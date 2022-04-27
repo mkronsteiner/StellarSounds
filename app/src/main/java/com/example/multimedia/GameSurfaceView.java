@@ -13,7 +13,10 @@ import android.view.SurfaceView;
 
 import androidx.core.view.MotionEventCompat;
 
-// holds all objects of the game, implements update and render methods
+/**
+ GameSurfaceView holds all objects of the game, implements update and render methods
+ @author Mirjam Kronsteiner
+ */
 
 public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 

@@ -14,6 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.sql.Array;
 import java.util.ArrayList;
 
+/**
+ HighscoreActivity contains the highscores which are displayed using a RecyclerView
+ @author Mirjam Kronsteiner
+ */
+
+
 public class HighscoreActivity extends AppCompatActivity {
 
     HighscoreAdapter adapter;

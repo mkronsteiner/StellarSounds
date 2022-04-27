@@ -4,7 +4,10 @@ import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
-//calls update and render methods in GameSurfaceView
+/**
+ GameLoop calls update and render methods in GameSurfaceView
+ @author Mirjam Kronsteiner
+ */
 
 public class GameLoop extends Thread {
 

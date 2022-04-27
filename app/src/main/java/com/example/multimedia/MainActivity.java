@@ -10,7 +10,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-//MainActivity is the entry point to the application
+
+/**
+ MainActivity is the entryway to our application. For Testing currently it holds "play" and "highscore" buttons to open the other activities
+ @author Mirjam Kronsteiner
+ */
 
 public class MainActivity extends AppCompatActivity {
 

@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ HighscoreAdapter is a RecyclerView Adapter that holds the individual Highscore elements (implemented in HighscoreViewHolder)
+ @author Mirjam Kronsteiner
+ */
 
 public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreViewHolder> {
 

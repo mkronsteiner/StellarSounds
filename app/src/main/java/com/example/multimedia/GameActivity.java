@@ -8,6 +8,11 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+GameActivity holds the GameSurfaceView and Gameloop
+ @author Mirjam Kronsteiner
+ */
+
 public class GameActivity extends AppCompatActivity {
 
     private GameSurfaceView gameView;
