@@ -12,7 +12,7 @@ import android.widget.Button;
 
 
 /**
- MainActivity is the entryway to our application. For Testing currently it holds "play" and "highscore" buttons to open the other activities
+ MainActivity is the entryway to our application. For Testing purposes it currently holds "play" and "highscore" buttons to open the other activities
  @author Mirjam Kronsteiner
  */
 
