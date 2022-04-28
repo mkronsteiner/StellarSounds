@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 
 /**
- GameLoop calls update and render methods in GameSurfaceView
+ GameLoop implements Thread methods, calls update and render methods in GameSurfaceView and calculates average FPS/UPS
  @author Mirjam Kronsteiner
  */
 
