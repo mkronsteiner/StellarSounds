@@ -11,7 +11,6 @@
         android:theme="@style/Theme.Multimedia">
         <activity
             android:name=".MainActivity"
-
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,14 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".GameActivity"
             android:exported="true">
         </activity>
-
         <activity
             android:name=".HighscoreActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".GameOverActivity"
             android:exported="true">
         </activity>
     </application>

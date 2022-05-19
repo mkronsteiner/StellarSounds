@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -189,6 +189,16 @@ implements android.view.SurfaceHolder.Callback</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#asteroid">asteroid</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#background">background</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>private double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#charaHeight">charaHeight</a></span></code></th>
 <td class="colLast">&nbsp;</td>
@@ -224,8 +234,43 @@ implements android.view.SurfaceHolder.Callback</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>private int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lives">lives</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private <a href="LevelMap.html" title="class in com.example.multimedia">LevelMap</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#map">map</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>private double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#playerPos">playerPos</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocket1">rocket1</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocket2">rocket2</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocket3">rocket3</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shield">shield</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#testGO">testGO</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -281,15 +326,32 @@ implements android.view.SurfaceHolder.Callback</pre>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawNote(android.graphics.Canvas)">drawNote</a></span>&#8203;(android.graphics.Canvas&nbsp;c)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawGameOver(android.graphics.Canvas)">drawGameOver</a></span>&#8203;(android.graphics.Canvas&nbsp;c)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawNote(android.graphics.Canvas)">drawNote</a></span>&#8203;(android.graphics.Canvas&nbsp;c)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinePos()">getLinePos</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getResizedBitmap(android.graphics.Bitmap,int,int)">getResizedBitmap</a></span>&#8203;(android.graphics.Bitmap&nbsp;bm,
+                int&nbsp;newWidth,
+                int&nbsp;newHeight)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onTouchEvent(android.view.MotionEvent)">onTouchEvent</a></span>&#8203;(android.view.MotionEvent&nbsp;e)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceChanged(android.view.SurfaceHolder,int,int,int)">surfaceChanged</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder,
               int&nbsp;i,
@@ -297,24 +359,19 @@ implements android.view.SurfaceHolder.Callback</pre>
               int&nbsp;i2)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceCreated(android.view.SurfaceHolder)">surfaceCreated</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceDestroyed(android.view.SurfaceHolder)">surfaceDestroyed</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code>private void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updatePlayerPos()">updatePlayerPos</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -382,6 +439,15 @@ implements android.view.SurfaceHolder.Callback</pre>
 <pre>private&nbsp;<a href="GameLoop.html" title="class in com.example.multimedia">GameLoop</a> gameLoop</pre>
 </li>
 </ul>
+<a id="map">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>map</h4>
+<pre>private&nbsp;<a href="LevelMap.html" title="class in com.example.multimedia">LevelMap</a> map</pre>
+</li>
+</ul>
 <a id="playerPos">
 <!--   -->
 </a>
@@ -421,10 +487,82 @@ implements android.view.SurfaceHolder.Callback</pre>
 <a id="isTouching">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>isTouching</h4>
 <pre>private&nbsp;boolean isTouching</pre>
+</li>
+</ul>
+<a id="lives">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>lives</h4>
+<pre>private&nbsp;int lives</pre>
+</li>
+</ul>
+<a id="testGO">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>testGO</h4>
+<pre>private&nbsp;boolean testGO</pre>
+</li>
+</ul>
+<a id="rocket1">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>rocket1</h4>
+<pre>private&nbsp;android.graphics.Bitmap rocket1</pre>
+</li>
+</ul>
+<a id="rocket2">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>rocket2</h4>
+<pre>private&nbsp;android.graphics.Bitmap rocket2</pre>
+</li>
+</ul>
+<a id="rocket3">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>rocket3</h4>
+<pre>private&nbsp;android.graphics.Bitmap rocket3</pre>
+</li>
+</ul>
+<a id="background">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>background</h4>
+<pre>private&nbsp;android.graphics.Bitmap background</pre>
+</li>
+</ul>
+<a id="asteroid">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>asteroid</h4>
+<pre>private&nbsp;android.graphics.Bitmap asteroid</pre>
+</li>
+</ul>
+<a id="shield">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>shield</h4>
+<pre>private&nbsp;android.graphics.Bitmap shield</pre>
 </li>
 </ul>
 </li>
@@ -520,15 +658,6 @@ implements android.view.SurfaceHolder.Callback</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;update()</pre>
 </li>
 </ul>
-<a id="updatePlayerPos()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>updatePlayerPos</h4>
-<pre class="methodSignature">private&nbsp;void&nbsp;updatePlayerPos()</pre>
-</li>
-</ul>
 <a id="draw(android.graphics.Canvas)">
 <!--   -->
 </a>
@@ -545,10 +674,39 @@ implements android.view.SurfaceHolder.Callback</pre>
 <a id="drawNote(android.graphics.Canvas)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>drawNote</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;drawNote&#8203;(android.graphics.Canvas&nbsp;c)</pre>
+</li>
+</ul>
+<a id="drawGameOver(android.graphics.Canvas)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>drawGameOver</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;drawGameOver&#8203;(android.graphics.Canvas&nbsp;c)</pre>
+</li>
+</ul>
+<a id="getResizedBitmap(android.graphics.Bitmap,int,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getResizedBitmap</h4>
+<pre class="methodSignature">public&nbsp;android.graphics.Bitmap&nbsp;getResizedBitmap&#8203;(android.graphics.Bitmap&nbsp;bm,
+                                                int&nbsp;newWidth,
+                                                int&nbsp;newHeight)</pre>
+</li>
+</ul>
+<a id="getLinePos()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getLinePos</h4>
+<pre class="methodSignature">public&nbsp;double&nbsp;getLinePos()</pre>
 </li>
 </ul>
 </li>
