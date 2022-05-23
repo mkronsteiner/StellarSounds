@@ -8,39 +8,44 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.Log;
 
 public class LevelMap {
 
     GameSurfaceView view;
 
-    double leftBound;
-    double rightBound;
-    double bottomPos;
+    private double leftBound;
+    private double bottomPos;
+    private Bitmap player;
+    private int playerX, playerY;
 
-    double[] map;
-    double[] vertPos;
+    private double[] map;
+    private double[] vertPos;
 
-    Bitmap asteroid, shield;
+    private Bitmap asteroid, shield;
 
-    Paint white, red, blue;
-
-    int t;
-    int bpm; //beats per minute
-    double speed;
-    double margin;
+    final private Paint white, red, blue;
 
     //variables for current value calculation
-    int index;
-    double temp;
-    double current;
+    private int t; //time
+    final private double speed; //scrolling speed
+    final private double margin; //vertical margin between elements
+    private int index;
+    private double temp;
+    private double current;
+    private boolean touching;
 
     public LevelMap(GameSurfaceView view) {
         this.view = view;
+
         t = 0;
-        bpm = 60;
-        speed = 5;
+        speed = 10;
         margin = 200;
+        index = 0;
+        temp = 0;
+        current = 0;
+        touching = false;
 
         white = new Paint();
         white.setColor(Color.WHITE);
@@ -53,16 +58,14 @@ public class LevelMap {
         blue = new Paint();
         blue.setColor(Color.BLUE);
         blue.setStrokeWidth(10);
-
-        index = 0;
-        temp = 0;
-        current = 0;
     }
 
     public void initPos() {
         leftBound = view.getLeft();
-        rightBound = view.getRight();
         bottomPos = view.getLinePos();
+        player = view.getPlayer();
+        playerX = view.getPlayerX();
+        playerY = view.getPlayerY();
     }
 
     public void initBitmaps(Bitmap asteroid, Bitmap shield) {
@@ -76,9 +79,11 @@ public class LevelMap {
 
         //positions on x axis
         map = new double[] {0.0, 0.0, 0.0, 0.0,
-                            1.1, 1.4, 1.3, 2.5,
+                            1.1, 1.4, 1.3, 3.5,
                             0.0, 0.0, 0.0, 0.0,
-                            1.5, 1.6, 1.2, 3.5};
+                            1.5, 1.6, 1.2, 2.5,
+                            0.0, 0.0, 0.0, 0.0,
+                            0.0, 0.0, 0.0, 0.0};
 
         //positions y axis
         vertPos = new double[map.length];
@@ -116,18 +121,25 @@ public class LevelMap {
             int next = index + 5;
             temp = map[index+5];
             if (temp > 1 && temp < 2) {
+                touching = true;
                 double pos = indexc - Math.floor(indexc);
                 current = interpolate(map[prev], map[next], pos);
                 current = (Math.round((current - Math.floor(current))*100))/100.0;
-            } else { current = 0.0; }
+            } else {
+                current = 0.0;
+                touching = false;
+            }
         } else if (index > map.length) {
             current = 0.0;
+            touching = false;
         }
 
 
 
-        Log.d("LevelMap.update()", "Current: " + current);
+        //Log.d("LevelMap.update()", "Current: " + current);
     }
+
+    public boolean isTouching() { return touching; }
 
     public void draw(Canvas c) {
         int width = view.getWidth();
@@ -145,24 +157,33 @@ public class LevelMap {
                 //if 0 < cur < 1: draw node point, decimals determine x-position
                 if (cur > 1 && cur < 2) {
                     float x = (float) (leftBound + (cur - 1) * width);
-                    //float y = (float) bottomPos + t - i * 200;
                     float y = (float) vertPos[i];
                     c.drawCircle(x, y, 30, y <= bottomPos ? white : red);
 
                 //if 2 < cur < 3: draw asteroid, decimals determine x-position
                 } else if (cur > 2.0 && cur < 3.0) {
                     float x = (float) ((leftBound + (cur - 2) * width) - itemWidth);
-                    //float y = (float) ((bottomPos + t - i * 200)-itemHeight);
                     float y = (float) vertPos[i] - itemHeight;
-                    //c.drawCircle(x, y, 30, red);
+
+                    if (isCollisionDetected(player, 260, playerY, asteroid, (int) x, (int) y)) {
+                        //Log.d("LevelMap.draw()", "collide with asteroid");
+                        view.collideWithAsteroid();
+                        map[i] = 0.0;
+                    }
+
                     c.drawBitmap(asteroid, x, y, null);
 
                 //if 3 < cur < 4: draw shield, decimals determine x-position
                 } else if (cur > 3.0 && cur < 4.0) {
                     float x = (float) ((leftBound + (cur - 3) * width) - itemWidth);
-                    //float y = (float) ((bottomPos + t - i * 200)-itemHeight);
                     float y = (float) vertPos[i] - itemHeight;
-                    //c.drawCircle(x, y, 30, blue);
+
+                    if (isCollisionDetected(player, 260, playerY, shield, (int) x, (int) y)) {
+                        //Log.d("LevelMap.draw()", "collide with shield");
+                        view.collideWithShield();
+                        map[i] = 0.0;
+                    }
+
                     c.drawBitmap(shield, x, y, null);
                 }
             }
@@ -185,4 +206,46 @@ public class LevelMap {
         //Log.d("LevelMap.draw", "done");
     }
 
+
+    //COLLISION DETECTION
+    /**
+     * @param bitmap1 First bitmap
+     * @param x1 x-position of bitmap1 on screen.
+     * @param y1 y-position of bitmap1 on screen.
+     * @param bitmap2 Second bitmap.
+     * @param x2 x-position of bitmap2 on screen.
+     * @param y2 y-position of bitmap2 on screen.
+     */
+    public boolean isCollisionDetected(Bitmap bitmap1, int x1, int y1,
+                                       Bitmap bitmap2, int x2, int y2) {
+
+        Rect bounds1 = new Rect(x1, y1, x1+bitmap1.getWidth(), y1+bitmap1.getHeight());
+        Rect bounds2 = new Rect(x2, y2, x2+bitmap2.getWidth(), y2+bitmap2.getHeight());
+
+        if (Rect.intersects(bounds1, bounds2)) {
+            Rect collisionBounds = getCollisionBounds(bounds1, bounds2);
+            for (int i = collisionBounds.left; i < collisionBounds.right; i++) {
+                for (int j = collisionBounds.top; j < collisionBounds.bottom; j++) {
+                    int bitmap1Pixel = bitmap1.getPixel(i-x1, j-y1);
+                    int bitmap2Pixel = bitmap2.getPixel(i-x2, j-y2);
+                    if (isFilled(bitmap1Pixel) && isFilled(bitmap2Pixel)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private static Rect getCollisionBounds(Rect rect1, Rect rect2) {
+        int left = (int) Math.max(rect1.left, rect2.left);
+        int top = (int) Math.max(rect1.top, rect2.top);
+        int right = (int) Math.min(rect1.right, rect2.right);
+        int bottom = (int) Math.min(rect1.bottom, rect2.bottom);
+        return new Rect(left, top, right, bottom);
+    }
+
+    private static boolean isFilled(int pixel) {
+        return pixel != Color.TRANSPARENT;
+    }
 }

@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -28,7 +29,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private LevelMap map;
 
     //POSITIONS & MOVEMENT
-    private double playerPos;
+    private double playerPos; //absolute position on screen
+    private double relPlayerPos; //player pos as relative value on the x axis
     private double linePos;
     private double charaWidth;
     private double charaHeight;
@@ -36,12 +38,17 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     //GAMEPLAY
     private int lives;
-    private boolean testGO;
+    private int points;
+    private int invincibilityTime; //current time of invincibility left, in frames
+    private int shieldPower; //seconds of invincibility given by shield
+    private int shieldLock; //like invincibility time, prevents shield from being collected more than once
 
     //GRAPHICS
     private Bitmap rocket1, rocket2, rocket3;
+    private float playerX, playerY;
     private Bitmap background;
     private Bitmap asteroid, shield;
+    final private Paint red, text, white;
 
     public GameSurfaceView(Context context) {
         super(context);
@@ -77,8 +84,24 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         shield = BitmapFactory.decodeResource(res, R.drawable.shield);
         shield = getResizedBitmap(shield, shield.getWidth()/2, shield.getHeight()/2);
 
+        red = new Paint();
+        red.setColor(Color.RED);
+        red.setStrokeWidth(6);
+
+        text = new Paint();
+        text.setColor(Color.WHITE);
+        text.setTextSize(80);
+
+        white = new Paint();
+        white.setColor(Color.WHITE);
+        white.setStrokeWidth(10);
+        white.setStyle(Paint.Style.STROKE);
+
         lives = 3;
-        testGO = false;
+        points = 0;
+        invincibilityTime = 0;
+        shieldPower = 10;
+        shieldLock = 0;
 
         map = new LevelMap(this);
 
@@ -94,6 +117,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         charaHeight = rocket1.getHeight();
         charaWidth = rocket1.getWidth();
         isTouching = false;
+        playerX = 0;
+        playerY = (float) linePos-135;
 
         map.initPos();
         map.loadMap();
@@ -155,7 +180,55 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         }
 
         map.update();
+        updatePoints();
         //Log.d("update", "cur:" + map.getCurrent());
+    }
+
+    //check how many points are earned each frame and update points count
+    //points are earned based on the difference between player position and current map value
+    public void updatePoints() {
+        relPlayerPos = playerPos / getRight();
+        relPlayerPos = Math.round(relPlayerPos * 100) / 100.0;
+        //Log.d("updatePoints()", "rel:" + relPlayerPos);
+
+        double dif; //difference between player position and current map value
+        if (map.isTouching()) {
+            dif = Math.abs(relPlayerPos - map.getCurrent());
+        } else {
+            dif = 0.0;
+        }
+        //Log.d("updatePoints()", "dif: " + dif);
+
+        //point gain based on dif
+        if (dif == 0.0) {
+
+        } else if (dif > 0.0 && dif < 0.015) {
+            points += 3;
+        } else if (dif < 0.035) {
+            points += 2;
+        } else if (dif < 0.055) {
+            points += 1;
+        }
+
+    }
+
+    public void collideWithAsteroid() {
+        if (invincibilityTime == 0) {
+            lives--;
+            invincibilityTime = 180;
+        } else {
+            invincibilityTime--;
+        }
+
+    }
+
+    public void collideWithShield() {
+        if (shieldLock == 0) {
+            invincibilityTime = shieldPower;
+            shieldLock = 180;
+        } else {
+            shieldLock--;
+        }
     }
 
 
@@ -169,15 +242,16 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         c.drawBitmap(background, 0, 0, null);
 
         //Guide lines
-        Paint red = new Paint();
-        red.setColor(Color.RED);
-        red.setStrokeWidth(6);
-
-        c.drawLine(getLeft(), (float) linePos, getRight(), (float) linePos, red);
-        c.drawLine(getWidth()/2, getBottom(), getWidth()/2, getTop(), red);
+        //c.drawLine(getLeft(), (float) linePos, getRight(), (float) linePos, red);
+        //c.drawLine(getWidth()/2, getBottom(), getWidth()/2, getTop(), red);
 
         //map
-        map.draw(c);
+        try {
+            map.draw(c);
+        } catch (ArrayIndexOutOfBoundsException e) {
+
+        }
+
 
         //rocket
 
@@ -198,28 +272,18 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                 break;
         } */
 
-        c.drawBitmap(rocket3, (float) playerPos - rocket3.getWidth()/8, (float) linePos-135, null);
+        playerX = (float) playerPos - rocket3.getWidth()/8.0f;
+        c.drawBitmap(rocket3, playerX, playerY, null);
+
+        if (invincibilityTime > 0) {
+            Log.d("GameSurfaceView.draw()", "invincibility");
+            c.drawCircle(playerX+150, playerY+400, 300, white);
+        }
 
         //text
-        Paint text = new Paint();
-        text.setColor(Color.WHITE);
-        text.setTextSize(80);
         c.drawText("Lives: " + lives, 30, 100, text);
-
-        c.drawRect(20, 120, 120, 220, red);
-
-    }
-
-    public void drawNote(Canvas c) {
-
-
-    }
-
-    public void drawGameOver(Canvas c) {
-        Paint text = new Paint();
-        text.setColor(Color.WHITE);
-        text.setTextSize(80);
-        c.drawText("GAME OVER", 30, 100, text);
+        c.drawText("Points: " + points, getRight() / 2.0f, 100, text);
+        c.drawRect(20, 120, 120, 220, red); //testing button
 
     }
 
@@ -243,4 +307,18 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public double getLinePos() {
         return linePos;
     }
+
+    public Bitmap getPlayer() {
+        return rocket3;
+    }
+
+    public int getPlayerX() {
+        return (int) playerX;
+    }
+
+    public int getPlayerY() {
+        return (int) playerY;
+    }
+
 }
+
