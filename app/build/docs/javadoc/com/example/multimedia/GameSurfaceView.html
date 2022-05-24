@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -199,28 +199,38 @@ implements android.view.SurfaceHolder.Callback</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>private android.graphics.Rect</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#boundingBox">boundingBox</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>private double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#charaHeight">charaHeight</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>private double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#charaWidth">charaWidth</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>private android.content.Context</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#context">context</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>private <a href="GameLoop.html" title="class in com.example.multimedia">GameLoop</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#gameLoop">gameLoop</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>private android.view.SurfaceHolder</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#holder">holder</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#invincibilityTime">invincibilityTime</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -249,6 +259,36 @@ implements android.view.SurfaceHolder.Callback</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>private float</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#playerX">playerX</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private float</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#playerY">playerY</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#points">points</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private android.graphics.Paint</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#red">red</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#relPlayerPos">relPlayerPos</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocket">rocket</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>private android.graphics.Bitmap</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocket1">rocket1</a></span></code></th>
 <td class="colLast">&nbsp;</td>
@@ -269,8 +309,23 @@ implements android.view.SurfaceHolder.Callback</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>private boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#testGO">testGO</a></span></code></th>
+<td class="colFirst"><code>private int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shieldLock">shieldLock</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shieldPower">shieldPower</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private android.graphics.Paint</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#text">text</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private android.graphics.Paint</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#white">white</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -321,37 +376,57 @@ implements android.view.SurfaceHolder.Callback</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#draw(android.graphics.Canvas)">draw</a></span>&#8203;(android.graphics.Canvas&nbsp;c)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#collideWithAsteroid()">collideWithAsteroid</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawGameOver(android.graphics.Canvas)">drawGameOver</a></span>&#8203;(android.graphics.Canvas&nbsp;c)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#collideWithShield()">collideWithShield</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawNote(android.graphics.Canvas)">drawNote</a></span>&#8203;(android.graphics.Canvas&nbsp;c)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#draw(android.graphics.Canvas)">draw</a></span>&#8203;(android.graphics.Canvas&nbsp;c)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#gameOver()">gameOver</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinePos()">getLinePos</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPlayer()">getPlayer</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPlayerX()">getPlayerX</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPlayerY()">getPlayerY</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>android.graphics.Bitmap</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getResizedBitmap(android.graphics.Bitmap,int,int)">getResizedBitmap</a></span>&#8203;(android.graphics.Bitmap&nbsp;bm,
                 int&nbsp;newWidth,
                 int&nbsp;newHeight)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onTouchEvent(android.view.MotionEvent)">onTouchEvent</a></span>&#8203;(android.view.MotionEvent&nbsp;e)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceChanged(android.view.SurfaceHolder,int,int,int)">surfaceChanged</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder,
               int&nbsp;i,
@@ -359,19 +434,29 @@ implements android.view.SurfaceHolder.Callback</pre>
               int&nbsp;i2)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceCreated(android.view.SurfaceHolder)">surfaceCreated</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceDestroyed(android.view.SurfaceHolder)">surfaceDestroyed</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>private void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updatePoints()">updatePoints</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>private void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updateRocketBitmap()">updateRocketBitmap</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -457,6 +542,15 @@ implements android.view.SurfaceHolder.Callback</pre>
 <pre>private&nbsp;double playerPos</pre>
 </li>
 </ul>
+<a id="relPlayerPos">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>relPlayerPos</h4>
+<pre>private&nbsp;double relPlayerPos</pre>
+</li>
+</ul>
 <a id="linePos">
 <!--   -->
 </a>
@@ -502,13 +596,49 @@ implements android.view.SurfaceHolder.Callback</pre>
 <pre>private&nbsp;int lives</pre>
 </li>
 </ul>
-<a id="testGO">
+<a id="points">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>testGO</h4>
-<pre>private&nbsp;boolean testGO</pre>
+<h4>points</h4>
+<pre>private&nbsp;int points</pre>
+</li>
+</ul>
+<a id="invincibilityTime">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>invincibilityTime</h4>
+<pre>private&nbsp;int invincibilityTime</pre>
+</li>
+</ul>
+<a id="shieldPower">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>shieldPower</h4>
+<pre>private&nbsp;int shieldPower</pre>
+</li>
+</ul>
+<a id="shieldLock">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>shieldLock</h4>
+<pre>private&nbsp;int shieldLock</pre>
+</li>
+</ul>
+<a id="rocket">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>rocket</h4>
+<pre>private&nbsp;android.graphics.Bitmap rocket</pre>
 </li>
 </ul>
 <a id="rocket1">
@@ -538,6 +668,24 @@ implements android.view.SurfaceHolder.Callback</pre>
 <pre>private&nbsp;android.graphics.Bitmap rocket3</pre>
 </li>
 </ul>
+<a id="playerX">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>playerX</h4>
+<pre>private&nbsp;float playerX</pre>
+</li>
+</ul>
+<a id="playerY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>playerY</h4>
+<pre>private&nbsp;float playerY</pre>
+</li>
+</ul>
 <a id="background">
 <!--   -->
 </a>
@@ -559,10 +707,46 @@ implements android.view.SurfaceHolder.Callback</pre>
 <a id="shield">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>shield</h4>
 <pre>private&nbsp;android.graphics.Bitmap shield</pre>
+</li>
+</ul>
+<a id="red">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>red</h4>
+<pre>private final&nbsp;android.graphics.Paint red</pre>
+</li>
+</ul>
+<a id="text">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>text</h4>
+<pre>private final&nbsp;android.graphics.Paint text</pre>
+</li>
+</ul>
+<a id="white">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>white</h4>
+<pre>private final&nbsp;android.graphics.Paint white</pre>
+</li>
+</ul>
+<a id="boundingBox">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>boundingBox</h4>
+<pre>private&nbsp;android.graphics.Rect boundingBox</pre>
 </li>
 </ul>
 </li>
@@ -658,6 +842,42 @@ implements android.view.SurfaceHolder.Callback</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;update()</pre>
 </li>
 </ul>
+<a id="gameOver()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>gameOver</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;gameOver()</pre>
+</li>
+</ul>
+<a id="updatePoints()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>updatePoints</h4>
+<pre class="methodSignature">private&nbsp;void&nbsp;updatePoints()</pre>
+</li>
+</ul>
+<a id="collideWithAsteroid()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>collideWithAsteroid</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;collideWithAsteroid()</pre>
+</li>
+</ul>
+<a id="collideWithShield()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>collideWithShield</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;collideWithShield()</pre>
+</li>
+</ul>
 <a id="draw(android.graphics.Canvas)">
 <!--   -->
 </a>
@@ -671,22 +891,13 @@ implements android.view.SurfaceHolder.Callback</pre>
 </dl>
 </li>
 </ul>
-<a id="drawNote(android.graphics.Canvas)">
+<a id="updateRocketBitmap()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>drawNote</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;drawNote&#8203;(android.graphics.Canvas&nbsp;c)</pre>
-</li>
-</ul>
-<a id="drawGameOver(android.graphics.Canvas)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>drawGameOver</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;drawGameOver&#8203;(android.graphics.Canvas&nbsp;c)</pre>
+<h4>updateRocketBitmap</h4>
+<pre class="methodSignature">private&nbsp;void&nbsp;updateRocketBitmap()</pre>
 </li>
 </ul>
 <a id="getResizedBitmap(android.graphics.Bitmap,int,int)">
@@ -703,10 +914,37 @@ implements android.view.SurfaceHolder.Callback</pre>
 <a id="getLinePos()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getLinePos</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getLinePos()</pre>
+</li>
+</ul>
+<a id="getPlayer()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPlayer</h4>
+<pre class="methodSignature">public&nbsp;android.graphics.Bitmap&nbsp;getPlayer()</pre>
+</li>
+</ul>
+<a id="getPlayerX()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPlayerX</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getPlayerX()</pre>
+</li>
+</ul>
+<a id="getPlayerY()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getPlayerY</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getPlayerY()</pre>
 </li>
 </ul>
 </li>

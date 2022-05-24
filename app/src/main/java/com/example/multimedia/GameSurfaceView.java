@@ -44,11 +44,12 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private int shieldLock; //like invincibility time, prevents shield from being collected more than once
 
     //GRAPHICS
-    private Bitmap rocket1, rocket2, rocket3;
+    private Bitmap rocket, rocket1, rocket2, rocket3;
     private float playerX, playerY;
     private Bitmap background;
     private Bitmap asteroid, shield;
     final private Paint red, text, white;
+    private Rect boundingBox;
 
     public GameSurfaceView(Context context) {
         super(context);
@@ -67,22 +68,26 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         // z.B. Ressourcen initialisieren
         Resources res = context.getResources();
 
-        rocket1 = BitmapFactory.decodeResource(res, R.drawable.rocket_stage_1);
-        rocket1 = getResizedBitmap(rocket1, rocket1.getWidth(), rocket1.getHeight()-70);
+        rocket1 = BitmapFactory.decodeResource(res, R.drawable.rocket_first_stage_small);
+        rocket1 = getResizedBitmap(rocket1, rocket1.getWidth()/5, rocket1.getHeight()/5);
 
-        rocket2 = BitmapFactory.decodeResource(res, R.drawable.rocket_stage_2);
-        rocket2 = getResizedBitmap(rocket2, rocket2.getWidth(), rocket2.getHeight()-70);
+        rocket2 = BitmapFactory.decodeResource(res, R.drawable.rocket_second_stage_small);
+        rocket2 = getResizedBitmap(rocket2, rocket2.getWidth()/5, rocket2.getHeight()/5);
 
-        rocket3 = BitmapFactory.decodeResource(res, R.drawable.rocket_stage_3);
-        rocket3 = getResizedBitmap(rocket3, rocket3.getWidth(), rocket3.getHeight()-70);
+        rocket3 = BitmapFactory.decodeResource(res, R.drawable.rocket_third_stage_small);
+        rocket3 = getResizedBitmap(rocket3, rocket3.getWidth()/5, rocket3.getHeight()/5);
+
+        rocket = rocket1;
 
         background = BitmapFactory.decodeResource(res, R.drawable.background);
 
         asteroid = BitmapFactory.decodeResource(res, R.drawable.meteor);
-        asteroid = getResizedBitmap(asteroid, asteroid.getWidth()/2, asteroid.getHeight()/2);
+        asteroid = getResizedBitmap(asteroid, 150, 150);
 
         shield = BitmapFactory.decodeResource(res, R.drawable.shield);
-        shield = getResizedBitmap(shield, shield.getWidth()/2, shield.getHeight()/2);
+        shield = getResizedBitmap(shield, 150, 150);
+
+        boundingBox = new Rect(0, 0, 0, 0);
 
         red = new Paint();
         red.setColor(Color.RED);
@@ -100,7 +105,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         lives = 3;
         points = 0;
         invincibilityTime = 0;
-        shieldPower = 10;
+        shieldPower = 180;
         shieldLock = 0;
 
         map = new LevelMap(this);
@@ -113,12 +118,12 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         //init
         playerPos = getWidth() / 2;
-        linePos = getHeight() - 600;
+        linePos = getHeight() - 800;
         charaHeight = rocket1.getHeight();
         charaWidth = rocket1.getWidth();
         isTouching = false;
         playerX = 0;
-        playerY = (float) linePos-135;
+        playerY = (float) linePos;
 
         map.initPos();
         map.loadMap();
@@ -135,6 +140,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        Log.d("GameSurfaceView", "surface destroyed");
         gameLoop.stopLoop();
     }
 
@@ -152,7 +158,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
             //if the rocket is touched
             if (startX > playerPos - charaWidth && startX < playerPos + charaWidth &&
-                    startY > linePos - charaHeight/2 && startY < linePos + charaHeight/2) {
+                    startY > linePos && startY < linePos + charaHeight) {
                 isTouching = true;
 
             //Testing button
@@ -171,12 +177,13 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     public void update() {
 
-        if (lives <= 0) {
-            Log.d("Update", "lives <= 0");
+        if (invincibilityTime > 0) invincibilityTime--;
+        if (shieldLock > 0) shieldLock--;
 
-            Intent i = new Intent(context, GameOverActivity.class);
-            context.startActivity(i);
-            gameLoop.stopLoop();
+        if (lives == 0) {
+            Log.d("Update", "lives <= 0");
+            gameOver();
+
         }
 
         map.update();
@@ -184,9 +191,17 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         //Log.d("update", "cur:" + map.getCurrent());
     }
 
+    public void gameOver() {
+
+        Intent i = new Intent(context, GameOverActivity.class);
+        context.startActivity(i);
+
+        //gameLoop.stopLoop();
+    }
+
     //check how many points are earned each frame and update points count
     //points are earned based on the difference between player position and current map value
-    public void updatePoints() {
+    private void updatePoints() {
         relPlayerPos = playerPos / getRight();
         relPlayerPos = Math.round(relPlayerPos * 100) / 100.0;
         //Log.d("updatePoints()", "rel:" + relPlayerPos);
@@ -215,7 +230,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public void collideWithAsteroid() {
         if (invincibilityTime == 0) {
             lives--;
-            invincibilityTime = 180;
+            updateRocketBitmap();
         } else {
             invincibilityTime--;
         }
@@ -236,8 +251,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         //Log.d("GameSurfaceView.java", "draw()");
         super.draw(c);
 
-
-
         //background
         c.drawBitmap(background, 0, 0, null);
 
@@ -246,38 +259,20 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         //c.drawLine(getWidth()/2, getBottom(), getWidth()/2, getTop(), red);
 
         //map
-        try {
-            map.draw(c);
-        } catch (ArrayIndexOutOfBoundsException e) {
-
-        }
-
+        map.draw(c);
 
         //rocket
 
         //choose image
-        /* Bitmap rocket = null;
-        switch (lives) {
-            case 1:
-                rocket = rocket1;
-                break;
-            case 2:
-                rocket = rocket2;
-                break;
-            case 3:
-                rocket = rocket3;
-                break;
-            default:
-                rocket = rocket1;
-                break;
-        } */
+        playerX = (float) playerPos - rocket.getWidth()/2.0f;
+        c.drawBitmap(rocket, playerX, playerY, null);
 
-        playerX = (float) playerPos - rocket3.getWidth()/8.0f;
-        c.drawBitmap(rocket3, playerX, playerY, null);
+        //boundingBox.set((int) playerX, (int) playerY, rocket1.getWidth(), rocket1.getHeight()); c.drawRect(boundingBox, white);
+
 
         if (invincibilityTime > 0) {
-            Log.d("GameSurfaceView.draw()", "invincibility");
-            c.drawCircle(playerX+150, playerY+400, 300, white);
+            //Log.d("GameSurfaceView.draw()", "invincibility");
+            c.drawCircle(playerX+150, playerY+300, 400, white);
         }
 
         //text
@@ -285,6 +280,24 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         c.drawText("Points: " + points, getRight() / 2.0f, 100, text);
         c.drawRect(20, 120, 120, 220, red); //testing button
 
+    }
+
+    private void updateRocketBitmap() {
+
+        switch (lives) {
+            case 1:
+                rocket = rocket3;
+                break;
+            case 2:
+                rocket = rocket2;
+                break;
+            case 3:
+                rocket = rocket1;
+                break;
+            default:
+                rocket = rocket1;
+                break;
+        }
     }
 
     public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {

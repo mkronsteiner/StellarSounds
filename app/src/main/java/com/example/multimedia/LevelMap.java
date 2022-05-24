@@ -24,8 +24,9 @@ public class LevelMap {
     private double[] vertPos;
 
     private Bitmap asteroid, shield;
+    private Rect aBoundingBox, sBoundingBox;
 
-    final private Paint white, red, blue;
+    final private Paint white, red, blue, whiteLine;
 
     //variables for current value calculation
     private int t; //time
@@ -51,6 +52,11 @@ public class LevelMap {
         white.setColor(Color.WHITE);
         white.setStrokeWidth(10);
 
+        whiteLine = new Paint();
+        whiteLine.setColor(Color.WHITE);
+        whiteLine.setStrokeWidth(10);
+        whiteLine.setStyle(Paint.Style.STROKE);
+
         red = new Paint();
         red.setColor(Color.RED);
         red.setStrokeWidth(10);
@@ -58,13 +64,16 @@ public class LevelMap {
         blue = new Paint();
         blue.setColor(Color.BLUE);
         blue.setStrokeWidth(10);
+
+        aBoundingBox = new Rect(0, 0, 0, 0);
+        sBoundingBox = new Rect(0, 0, 0, 0);
     }
 
     public void initPos() {
         leftBound = view.getLeft();
         bottomPos = view.getLinePos();
         player = view.getPlayer();
-        playerX = view.getPlayerX();
+        playerX = 260;
         playerY = view.getPlayerY();
     }
 
@@ -82,7 +91,13 @@ public class LevelMap {
                             1.1, 1.4, 1.3, 3.5,
                             0.0, 0.0, 0.0, 0.0,
                             1.5, 1.6, 1.2, 2.5,
+                            0.0, 0.0, 1.2, 1.8,
+                            0.0, 1.2, 1.9, 2.3,
                             0.0, 0.0, 0.0, 0.0,
+                            1.6, 1.2, 1.8, 1.3,
+                            0.0, 0.0, 0.0, 2.4,
+                            0.0, 0.0, 0.0, 2.8,
+                            0.0, 0.0, 0.0, 2.5,
                             0.0, 0.0, 0.0, 0.0};
 
         //positions y axis
@@ -108,18 +123,24 @@ public class LevelMap {
         //advance time
         t += speed;
 
+        //move all the elements
         for (int i = 0; i < map.length; i++) {
             vertPos[i] += speed;
         }
 
         //calculate the current value of the note at the line (bottom) position
-        double indexc = (t-bottomPos)/margin;
+        double indexc = (t/margin)-1;
         index = (int) Math.floor(indexc);
 
-        if (index >= 0 && index < map.length) {
-            int prev = index + 4;
-            int next = index + 5;
-            temp = map[index+5];
+        if (index >= map.length-1) {
+            Log.d("LevelMap.update()", "map ended");
+            view.gameOver();
+        }
+
+        if (index >= 0 && index < map.length-1) {
+            int prev = index-1;
+            int next = index;
+            temp = map[index];
             if (temp > 1 && temp < 2) {
                 touching = true;
                 double pos = indexc - Math.floor(indexc);
@@ -159,13 +180,14 @@ public class LevelMap {
                     float x = (float) (leftBound + (cur - 1) * width);
                     float y = (float) vertPos[i];
                     c.drawCircle(x, y, 30, y <= bottomPos ? white : red);
+                    //c.drawLine(view.getLeft(), y, view.getRight(), y, red);
 
                 //if 2 < cur < 3: draw asteroid, decimals determine x-position
                 } else if (cur > 2.0 && cur < 3.0) {
                     float x = (float) ((leftBound + (cur - 2) * width) - itemWidth);
                     float y = (float) vertPos[i] - itemHeight;
 
-                    if (isCollisionDetected(player, 260, playerY, asteroid, (int) x, (int) y)) {
+                    if (isCollisionDetected(player, playerX, playerY, asteroid, (int) x, (int) y)) {
                         //Log.d("LevelMap.draw()", "collide with asteroid");
                         view.collideWithAsteroid();
                         map[i] = 0.0;
@@ -173,18 +195,22 @@ public class LevelMap {
 
                     c.drawBitmap(asteroid, x, y, null);
 
+                    //aBoundingBox.set((int) x, (int) y, asteroid.getWidth(), asteroid.getHeight()); c.drawRect(aBoundingBox, whiteLine);
+
                 //if 3 < cur < 4: draw shield, decimals determine x-position
                 } else if (cur > 3.0 && cur < 4.0) {
                     float x = (float) ((leftBound + (cur - 3) * width) - itemWidth);
                     float y = (float) vertPos[i] - itemHeight;
 
-                    if (isCollisionDetected(player, 260, playerY, shield, (int) x, (int) y)) {
+                    if (isCollisionDetected(player, playerX, playerY, shield, (int) x, (int) y)) {
                         //Log.d("LevelMap.draw()", "collide with shield");
                         view.collideWithShield();
                         map[i] = 0.0;
                     }
 
                     c.drawBitmap(shield, x, y, null);
+
+                    //sBoundingBox.set((int) x, (int) y, shield.getWidth(), shield.getHeight()); c.drawRect(sBoundingBox, whiteLine);
                 }
             }
             //Log.d("LevelMap.draw", "drawing at x=" + x + " y=" + y);

@@ -1,6 +1,7 @@
 package com.example.multimedia;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Window;
@@ -38,6 +39,12 @@ public class GameActivity extends AppCompatActivity {
         editor.putInt("score1", 100);
         editor.putInt("score2", 150);
         editor.commit();
+    }
+
+    public void close() {
+        Intent i = new Intent(this, GameOverActivity.class);
+        this.startActivity(i);
+
     }
 
 }
