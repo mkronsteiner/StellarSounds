@@ -24,7 +24,6 @@ public class LevelMap {
     private double[] vertPos;
 
     private Bitmap asteroid, shield;
-    private Rect aBoundingBox, sBoundingBox;
 
     final private Paint white, red, blue, whiteLine;
 
@@ -65,15 +64,13 @@ public class LevelMap {
         blue.setColor(Color.BLUE);
         blue.setStrokeWidth(10);
 
-        aBoundingBox = new Rect(0, 0, 0, 0);
-        sBoundingBox = new Rect(0, 0, 0, 0);
     }
 
     public void initPos() {
         leftBound = view.getLeft();
         bottomPos = view.getLinePos();
         player = view.getPlayer();
-        playerX = 260;
+        playerX = view.getPlayerX();
         playerY = view.getPlayerY();
     }
 
@@ -88,6 +85,7 @@ public class LevelMap {
 
         //positions on x axis
         map = new double[] {0.0, 0.0, 0.0, 0.0,
+                            1.5, 1.5, 1.5, 1.5,
                             1.1, 1.4, 1.3, 3.5,
                             0.0, 0.0, 0.0, 0.0,
                             1.5, 1.6, 1.2, 2.5,
@@ -164,8 +162,10 @@ public class LevelMap {
 
     public void draw(Canvas c) {
         int width = view.getWidth();
-        float itemWidth = (float) asteroid.getWidth()/2;
-        float itemHeight = (float) asteroid.getHeight()/2;
+        float itemWidth = (float) asteroid.getWidth();
+        float itemHeight = (float) asteroid.getHeight();
+        playerX = view.getPlayerX();
+        //Log.d("LevelMap.draw", "playerX= " + playerX);
 
         //draw items & note points
         double cur;
@@ -181,39 +181,39 @@ public class LevelMap {
                     float y = (float) vertPos[i];
                     c.drawCircle(x, y, 30, y <= bottomPos ? white : red);
                     //c.drawLine(view.getLeft(), y, view.getRight(), y, red);
+                    Log.d("LevelMap.draw()", "drawing point at" + x);
 
                 //if 2 < cur < 3: draw asteroid, decimals determine x-position
                 } else if (cur > 2.0 && cur < 3.0) {
-                    float x = (float) ((leftBound + (cur - 2) * width) - itemWidth);
+                    float x = (float) ((leftBound + (cur - 2) * width));
                     float y = (float) vertPos[i] - itemHeight;
 
                     if (isCollisionDetected(player, playerX, playerY, asteroid, (int) x, (int) y)) {
-                        //Log.d("LevelMap.draw()", "collide with asteroid");
+                        Log.d("LevelMap.draw()", "collide with asteroid");
                         view.collideWithAsteroid();
                         map[i] = 0.0;
                     }
 
-                    c.drawBitmap(asteroid, x, y, null);
+                    c.drawBitmap(asteroid, x  - itemWidth/2, y, null);
+                    //Log.d("LevelMap.draw", "drawing asteroid at x=" + x + " y=" + y);
 
-                    //aBoundingBox.set((int) x, (int) y, asteroid.getWidth(), asteroid.getHeight()); c.drawRect(aBoundingBox, whiteLine);
 
                 //if 3 < cur < 4: draw shield, decimals determine x-position
                 } else if (cur > 3.0 && cur < 4.0) {
-                    float x = (float) ((leftBound + (cur - 3) * width) - itemWidth);
+                    float x = (float) ((leftBound + (cur - 3) * width));
                     float y = (float) vertPos[i] - itemHeight;
 
                     if (isCollisionDetected(player, playerX, playerY, shield, (int) x, (int) y)) {
-                        //Log.d("LevelMap.draw()", "collide with shield");
+                        Log.d("LevelMap.draw()", "collide with shield");
                         view.collideWithShield();
                         map[i] = 0.0;
                     }
 
-                    c.drawBitmap(shield, x, y, null);
-
-                    //sBoundingBox.set((int) x, (int) y, shield.getWidth(), shield.getHeight()); c.drawRect(sBoundingBox, whiteLine);
+                    c.drawBitmap(shield, x  - itemWidth/ 2, y, null);
+                    //Log.d("LevelMap.draw", "drawing shield at x=" + x + " y=" + y);
                 }
             }
-            //Log.d("LevelMap.draw", "drawing at x=" + x + " y=" + y);
+
         }
 
         //draw note edges
@@ -273,5 +273,23 @@ public class LevelMap {
 
     private static boolean isFilled(int pixel) {
         return pixel != Color.TRANSPARENT;
+    }
+
+    Bitmap drawBorder(Bitmap source) {
+        int width = source.getWidth();
+        int height = source.getHeight();
+        Bitmap bitmap = Bitmap.createBitmap(width, height, source.getConfig());
+        Canvas canvas = new Canvas(bitmap);
+        Paint paint = new Paint();
+        paint.setStrokeWidth(50);
+        paint.setColor(Color.WHITE);
+
+        canvas.drawLine(0, 0, width, 0, paint);
+        canvas.drawLine(width, 0, width, height, paint);
+        canvas.drawLine(width, height, 0, height, paint);
+        canvas.drawLine(0, height, 0, 0, paint);
+        canvas.drawBitmap(source, 0, 0, null);
+
+        return bitmap;
     }
 }

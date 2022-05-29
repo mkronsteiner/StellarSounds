@@ -51,6 +51,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     final private Paint red, text, white;
     private Rect boundingBox;
 
+    //TESTING
+    private final boolean drawBounds = false;
+    private Bitmap rocket_, rocket1_, rocket2_, rocket3_;
+    private Bitmap asteroid_, shield_;
+
     public GameSurfaceView(Context context) {
         super(context);
 
@@ -74,8 +79,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         rocket2 = BitmapFactory.decodeResource(res, R.drawable.rocket_second_stage_small);
         rocket2 = getResizedBitmap(rocket2, rocket2.getWidth()/5, rocket2.getHeight()/5);
 
+
         rocket3 = BitmapFactory.decodeResource(res, R.drawable.rocket_third_stage_small);
         rocket3 = getResizedBitmap(rocket3, rocket3.getWidth()/5, rocket3.getHeight()/5);
+
 
         rocket = rocket1;
 
@@ -86,6 +93,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         shield = BitmapFactory.decodeResource(res, R.drawable.shield);
         shield = getResizedBitmap(shield, 150, 150);
+
 
         boundingBox = new Rect(0, 0, 0, 0);
 
@@ -124,12 +132,19 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         isTouching = false;
         playerX = 0;
         playerY = (float) linePos;
-
         map.initPos();
         map.loadMap();
-        map.initBitmaps(asteroid, shield);
 
+        map.initBitmaps(asteroid, shield);
         background = getResizedBitmap(background, getWidth(), getHeight());
+
+
+
+        //updateRocketBitmap();
+
+
+
+
     }
 
 
@@ -265,9 +280,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         //choose image
         playerX = (float) playerPos - rocket.getWidth()/2.0f;
+
         c.drawBitmap(rocket, playerX, playerY, null);
 
-        //boundingBox.set((int) playerX, (int) playerY, rocket1.getWidth(), rocket1.getHeight()); c.drawRect(boundingBox, white);
 
 
         if (invincibilityTime > 0) {
@@ -317,6 +332,24 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         return resizedBitmap;
     }
 
+    Bitmap drawBorder(Bitmap source) {
+        int width = source.getWidth();
+        int height = source.getHeight();
+        Bitmap bitmap = Bitmap.createBitmap(width, height, source.getConfig());
+        Canvas canvas = new Canvas(bitmap);
+        Paint paint = new Paint();
+        paint.setStrokeWidth(50);
+        paint.setColor(Color.WHITE);
+
+        canvas.drawLine(0, 0, width, 0, paint);
+        canvas.drawLine(width, 0, width, height, paint);
+        canvas.drawLine(width, height, 0, height, paint);
+        canvas.drawLine(0, height, 0, 0, paint);
+        canvas.drawBitmap(source, 0, 0, null);
+
+        return bitmap;
+    }
+
     public double getLinePos() {
         return linePos;
     }
@@ -326,7 +359,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     public int getPlayerX() {
-        return (int) playerX;
+        return (int) playerPos;
     }
 
     public int getPlayerY() {
