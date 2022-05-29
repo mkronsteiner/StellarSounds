@@ -181,7 +181,7 @@ public class LevelMap {
                     float y = (float) vertPos[i];
                     c.drawCircle(x, y, 30, y <= bottomPos ? white : red);
                     //c.drawLine(view.getLeft(), y, view.getRight(), y, red);
-                    Log.d("LevelMap.draw()", "drawing point at" + x);
+                    //Log.d("LevelMap.draw()", "drawing point at" + x);
 
                 //if 2 < cur < 3: draw asteroid, decimals determine x-position
                 } else if (cur > 2.0 && cur < 3.0) {

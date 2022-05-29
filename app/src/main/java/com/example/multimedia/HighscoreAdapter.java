@@ -35,7 +35,11 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreViewHolder> 
     @Override
     public void onBindViewHolder(HighscoreViewHolder holder, int i) {
 
-        holder.myTextView.setText(data.get(i).toString());
+        if (data.get(i) != null) {
+            holder.myTextView.setText(data.get(i).toString());
+        } else {
+            holder.myTextView.setText("empty");
+        }
     }
 
     @Override

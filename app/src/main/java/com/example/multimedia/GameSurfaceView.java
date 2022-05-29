@@ -2,6 +2,7 @@ package com.example.multimedia;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,10 +12,15 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 /**
  GameSurfaceView holds all objects of the game, implements update and render methods
@@ -27,6 +33,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private SurfaceHolder holder;
     private GameLoop gameLoop;
     private LevelMap map;
+
+    private Random rand;
 
     //POSITIONS & MOVEMENT
     private double playerPos; //absolute position on screen
@@ -55,6 +63,12 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private final boolean drawBounds = false;
     private Bitmap rocket_, rocket1_, rocket2_, rocket3_;
     private Bitmap asteroid_, shield_;
+
+    //HIGHSCORES
+    public static final String PREFS_NAME = "ScoresFile";
+    public static final int PREFS_MODE = Context.MODE_PRIVATE;
+    SharedPreferences scores;
+    SharedPreferences.Editor editor;
 
     public GameSurfaceView(Context context) {
         super(context);
@@ -118,10 +132,13 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         map = new LevelMap(this);
 
+        rand = new Random();
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
+
+
         gameLoop.startLoop();
 
         //init
@@ -178,8 +195,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
             //Testing button
             } else if (startX > 20 && startX < 120 && startY > 120 && startY < 220) {
-                lives--;
-
+                gameOver();
             } else { isTouching = false; }
         }
         if (e.getAction() == MotionEvent.ACTION_MOVE) {
@@ -195,11 +211,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         if (invincibilityTime > 0) invincibilityTime--;
         if (shieldLock > 0) shieldLock--;
 
-        if (lives == 0) {
-            Log.d("Update", "lives <= 0");
-            gameOver();
 
-        }
 
         map.update();
         updatePoints();
@@ -207,11 +219,22 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     public void gameOver() {
+        addScore(points);
 
         Intent i = new Intent(context, GameOverActivity.class);
         context.startActivity(i);
+        gameLoop.stopLoop();
+    }
 
-        //gameLoop.stopLoop();
+    public void addScore(int score) {
+        scores = context.getSharedPreferences(PREFS_NAME, PREFS_MODE);
+        editor = scores.edit();
+        //editor.clear();
+        Map<String, ?> map = scores.getAll();
+        int nextVal = map.size() +1;
+
+        editor.putInt("score" + nextVal, score);
+        editor.commit();
     }
 
     //check how many points are earned each frame and update points count
@@ -248,6 +271,12 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             updateRocketBitmap();
         } else {
             invincibilityTime--;
+        }
+
+        if (lives == 0) {
+            Log.d("Update", "lives <= 0");
+            gameOver();
+
         }
 
     }
