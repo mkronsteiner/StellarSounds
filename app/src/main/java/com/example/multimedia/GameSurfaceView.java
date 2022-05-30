@@ -192,6 +192,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         Log.d("GameSurfaceView", "surface destroyed");
         mp.stop();
+        if (paused) gameLoop.resumeLoop();
         gameLoop.stopLoop();
     }
 
@@ -216,8 +217,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             } else if (startX > 20 && startX < 120 && startY > 120 && startY < 220) {
                 if (!paused) pauseGame();
                 else resumeGame();
+            //testing button
             } else if (startX > 20 && startX < 120 && startY > 320 && startY < 420) {
-                gameWin();
+
             } else { isTouching = false; }
         }
         if (e.getAction() == MotionEvent.ACTION_MOVE) {
@@ -237,28 +239,37 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         map.update();
         updatePoints();
+
+        if (lives == 0) {
+            Log.d("collideWithAsteroid", "lives <= 0");
+            gameOver();
+
+        }
         //Log.d("update", "cur:" + map.getCurrent());
     }
 
     public void gameOver() {
+        gameLoop.pauseLoop();
+        pauseGame();
         addScore(points);
 
-        Intent i = new Intent(context, GameOverActivity.class);
-        context.startActivity(i);
+        GameActivity activity = (GameActivity) context;
+        activity.createGameOver();
 
         mp.stop();
-        gameLoop.stopLoop();
     }
 
     public void gameWin() {
+        gameLoop.pauseLoop();
         addScore(points);
 
-        Intent i = new Intent(context, GameWinActivity.class);
-        i.putExtra("points", points);
-        context.startActivity(i);
-
         mp.stop();
-        gameLoop.stopLoop();
+
+
+        GameActivity activity = (GameActivity) context;
+        activity.createGameWin(points);
+
+
     }
 
     public void pauseGame() {
@@ -320,11 +331,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             invincibilityTime--;
         }
 
-        if (lives == 0) {
-            Log.d("collideWithAsteroid", "lives <= 0");
-            gameOver();
 
-        }
 
     }
 
@@ -370,7 +377,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         c.drawText("Lives: " + lives, 30, 100, text);
         c.drawText("Points: " + points, getRight() / 2.0f, 100, text);
         c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
-        c.drawRect(20, 320, 120, 420, red); //testing button
+        //c.drawRect(20, 320, 120, 420, red); //testing button
 
     }
 
