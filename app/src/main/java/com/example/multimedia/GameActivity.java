@@ -18,9 +18,6 @@ public class GameActivity extends AppCompatActivity {
 
     private GameSurfaceView gameView;
 
-    public static final String PREFS_NAME = "MyPrefsFile";
-    public static final int PREFS_MODE = Context.MODE_PRIVATE;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,18 +29,6 @@ public class GameActivity extends AppCompatActivity {
         gameView = new GameSurfaceView(this);
         setContentView(gameView);
 
-        SharedPreferences scores = getSharedPreferences(PREFS_NAME, PREFS_MODE);
-
-        SharedPreferences.Editor editor = scores.edit();
-
-        editor.putInt("score1", 100);
-        editor.putInt("score2", 150);
-        editor.commit();
-    }
-
-    public void close() {
-        Intent i = new Intent(this, GameOverActivity.class);
-        this.startActivity(i);
 
     }
 
