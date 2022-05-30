@@ -132,7 +132,7 @@ public class LevelMap {
 
         if (index >= map.length-1) {
             Log.d("LevelMap.update()", "map ended");
-            view.gameOver();
+            view.gameWin();
         }
 
         if (index >= 0 && index < map.length-1) {
@@ -234,14 +234,6 @@ public class LevelMap {
 
 
     //COLLISION DETECTION
-    /**
-     * @param bitmap1 First bitmap
-     * @param x1 x-position of bitmap1 on screen.
-     * @param y1 y-position of bitmap1 on screen.
-     * @param bitmap2 Second bitmap.
-     * @param x2 x-position of bitmap2 on screen.
-     * @param y2 y-position of bitmap2 on screen.
-     */
     public boolean isCollisionDetected(Bitmap bitmap1, int x1, int y1,
                                        Bitmap bitmap2, int x2, int y2) {
 

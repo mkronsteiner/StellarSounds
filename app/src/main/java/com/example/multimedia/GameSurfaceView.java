@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -204,7 +205,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                 if (!paused) pauseGame();
                 else resumeGame();
             } else if (startX > 20 && startX < 120 && startY > 320 && startY < 420) {
-                gameOver();
+                gameWin();
             } else { isTouching = false; }
         }
         if (e.getAction() == MotionEvent.ACTION_MOVE) {
@@ -232,6 +233,17 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         Intent i = new Intent(context, GameOverActivity.class);
         context.startActivity(i);
+
+        gameLoop.stopLoop();
+    }
+
+    public void gameWin() {
+        addScore(points);
+
+        Intent i = new Intent(context, GameWinActivity.class);
+        i.putExtra("points", points);
+        context.startActivity(i);
+
         gameLoop.stopLoop();
     }
 
