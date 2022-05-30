@@ -3,6 +3,7 @@ package com.example.multimedia;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -28,6 +29,8 @@ public class GameActivity extends AppCompatActivity {
 
         gameView = new GameSurfaceView(this);
         setContentView(gameView);
+
+
 
 
     }

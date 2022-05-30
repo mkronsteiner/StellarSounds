@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -17,10 +18,13 @@ import android.widget.Button;
  */
 
 public class MainActivity extends AppCompatActivity {
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_music);
+        mediaPlayer.start();
 
         //getSupportActionBar().hide();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -29,10 +33,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Button playButton = (Button) findViewById(R.id.playbutton);
+        final MediaPlayer mp = MediaPlayer.create(getApplicationContext(),R.raw.track1);
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.playbutton){
                     Intent i = new Intent(MainActivity.this, GameActivity.class);
+                    mp.start();
                     startActivity(i);
                 }
             }
