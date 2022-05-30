@@ -18,13 +18,14 @@ import android.widget.Button;
  */
 
 public class MainActivity extends AppCompatActivity {
-    MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_music);
-        //mediaPlayer.start();
+
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_music);
+        mediaPlayer.start();
 
         //getSupportActionBar().hide();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.playbutton){
+                    mediaPlayer.stop();
                     Intent i = new Intent(MainActivity.this, GameActivity.class);
-                    //mediaPlayer.pause();
                     startActivity(i);
                 }
             }
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.highscoresButton){
+                    mediaPlayer.stop();
                     Intent i = new Intent(MainActivity.this, HighscoreActivity.class);
                     startActivity(i);
                 }

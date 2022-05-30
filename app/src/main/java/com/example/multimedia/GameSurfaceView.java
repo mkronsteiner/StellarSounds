@@ -67,6 +67,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     final private Paint red, text, white;
     private Rect boundingBox;
 
+    //MUSIC
+    private MediaPlayer mp;
+
     //HIGHSCORES
     public static final String PREFS_NAME = "ScoresFile";
     public static final int PREFS_MODE = Context.MODE_PRIVATE;
@@ -88,6 +91,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         setFocusable(true);
 
         // z.B. Ressourcen initialisieren
+        mp = MediaPlayer.create(context,R.raw.track1);
+        mp.start();
+
         Resources res = context.getResources();
 
         rocket1 = BitmapFactory.decodeResource(res, R.drawable.rocket_first_stage_small);
@@ -185,6 +191,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         Log.d("GameSurfaceView", "surface destroyed");
+        mp.stop();
         gameLoop.stopLoop();
     }
 
@@ -239,6 +246,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         Intent i = new Intent(context, GameOverActivity.class);
         context.startActivity(i);
 
+        mp.stop();
         gameLoop.stopLoop();
     }
 
@@ -249,19 +257,20 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         i.putExtra("points", points);
         context.startActivity(i);
 
+        mp.stop();
         gameLoop.stopLoop();
     }
 
     public void pauseGame() {
         paused = true;
+        mp.pause();
         gameLoop.pauseLoop();
-        //mediaPlayer.pause();
     }
 
     public void resumeGame() {
         paused = false;
+        mp.start();
         gameLoop.resumeLoop();
-        //mediaPlayer.start();
     }
 
     public void addScore(int score) {
