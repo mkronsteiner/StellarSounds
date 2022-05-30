@@ -175,7 +175,7 @@ public class LevelMap {
             //only render elements in view
             if (vertPos[i] <= view.getBottom() && vertPos[i] >= view.getTop()) {
 
-                //if 0 < cur < 1: draw node point, decimals determine x-position
+                //if 1 < cur < 2: draw node point, decimals determine x-position
                 if (cur > 1 && cur < 2) {
                     float x = (float) (leftBound + (cur - 1) * width);
                     float y = (float) vertPos[i];

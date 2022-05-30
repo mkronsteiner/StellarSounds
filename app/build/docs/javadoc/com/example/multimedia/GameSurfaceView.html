@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -195,12 +195,12 @@ implements android.view.SurfaceHolder.Callback</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>private android.graphics.Bitmap</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#asteroid_">asteroid_</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#background">background</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private android.graphics.Bitmap</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#background">background</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#bigPauseButton">bigPauseButton</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -224,48 +224,58 @@ implements android.view.SurfaceHolder.Callback</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>private boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawBounds">drawBounds</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>(package private) android.content.SharedPreferences.Editor</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#editor">editor</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>private <a href="GameLoop.html" title="class in com.example.multimedia">GameLoop</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#gameLoop">gameLoop</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>private android.view.SurfaceHolder</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#holder">holder</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#invincibilityTime">invincibilityTime</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>private boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isTouching">isTouching</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>private double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#linePos">linePos</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lives">lives</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>private <a href="LevelMap.html" title="class in com.example.multimedia">LevelMap</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#map">map</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pauseButton">pauseButton</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#paused">paused</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#playButton">playButton</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -320,17 +330,7 @@ implements android.view.SurfaceHolder.Callback</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private android.graphics.Bitmap</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocket_">rocket_</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocket1">rocket1</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocket1_">rocket1_</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -340,17 +340,7 @@ implements android.view.SurfaceHolder.Callback</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>private android.graphics.Bitmap</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocket2_">rocket2_</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocket3">rocket3</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocket3_">rocket3_</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -364,26 +354,21 @@ implements android.view.SurfaceHolder.Callback</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shield_">shield_</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shieldLock">shieldLock</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shieldPower">shieldPower</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>private android.graphics.Paint</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#text">text</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>private android.graphics.Paint</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#white">white</a></span></code></th>
 <td class="colLast">&nbsp;</td>
@@ -455,8 +440,8 @@ implements android.view.SurfaceHolder.Callback</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>(package private) android.graphics.Bitmap</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawBorder(android.graphics.Bitmap)">drawBorder</a></span>&#8203;(android.graphics.Bitmap&nbsp;source)</code></th>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#drawPauseScreen(android.graphics.Canvas)">drawPauseScreen</a></span>&#8203;(android.graphics.Canvas&nbsp;c)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
@@ -498,33 +483,43 @@ implements android.view.SurfaceHolder.Callback</pre>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pauseGame()">pauseGame</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resumeGame()">resumeGame</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceChanged(android.view.SurfaceHolder,int,int,int)">surfaceChanged</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder,
               int&nbsp;i,
               int&nbsp;i1,
               int&nbsp;i2)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceCreated(android.view.SurfaceHolder)">surfaceCreated</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceDestroyed(android.view.SurfaceHolder)">surfaceDestroyed</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>private void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updatePoints()">updatePoints</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>private void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updateRocketBitmap()">updateRocketBitmap</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -666,6 +661,15 @@ implements android.view.SurfaceHolder.Callback</pre>
 <pre>private&nbsp;boolean isTouching</pre>
 </li>
 </ul>
+<a id="paused">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>paused</h4>
+<pre>private&nbsp;boolean paused</pre>
+</li>
+</ul>
 <a id="lives">
 <!--   -->
 </a>
@@ -792,6 +796,33 @@ implements android.view.SurfaceHolder.Callback</pre>
 <pre>private&nbsp;android.graphics.Bitmap shield</pre>
 </li>
 </ul>
+<a id="pauseButton">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>pauseButton</h4>
+<pre>private&nbsp;android.graphics.Bitmap pauseButton</pre>
+</li>
+</ul>
+<a id="playButton">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>playButton</h4>
+<pre>private&nbsp;android.graphics.Bitmap playButton</pre>
+</li>
+</ul>
+<a id="bigPauseButton">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>bigPauseButton</h4>
+<pre>private&nbsp;android.graphics.Bitmap bigPauseButton</pre>
+</li>
+</ul>
 <a id="red">
 <!--   -->
 </a>
@@ -826,73 +857,6 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>boundingBox</h4>
 <pre>private&nbsp;android.graphics.Rect boundingBox</pre>
-</li>
-</ul>
-<a id="drawBounds">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>drawBounds</h4>
-<pre>private final&nbsp;boolean drawBounds</pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../constant-values.html#com.example.multimedia.GameSurfaceView.drawBounds">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a id="rocket_">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>rocket_</h4>
-<pre>private&nbsp;android.graphics.Bitmap rocket_</pre>
-</li>
-</ul>
-<a id="rocket1_">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>rocket1_</h4>
-<pre>private&nbsp;android.graphics.Bitmap rocket1_</pre>
-</li>
-</ul>
-<a id="rocket2_">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>rocket2_</h4>
-<pre>private&nbsp;android.graphics.Bitmap rocket2_</pre>
-</li>
-</ul>
-<a id="rocket3_">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>rocket3_</h4>
-<pre>private&nbsp;android.graphics.Bitmap rocket3_</pre>
-</li>
-</ul>
-<a id="asteroid_">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>asteroid_</h4>
-<pre>private&nbsp;android.graphics.Bitmap asteroid_</pre>
-</li>
-</ul>
-<a id="shield_">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>shield_</h4>
-<pre>private&nbsp;android.graphics.Bitmap shield_</pre>
 </li>
 </ul>
 <a id="PREFS_NAME">
@@ -1041,6 +1005,24 @@ implements android.view.SurfaceHolder.Callback</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;gameOver()</pre>
 </li>
 </ul>
+<a id="pauseGame()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>pauseGame</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;pauseGame()</pre>
+</li>
+</ul>
+<a id="resumeGame()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>resumeGame</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;resumeGame()</pre>
+</li>
+</ul>
 <a id="addScore(int)">
 <!--   -->
 </a>
@@ -1090,6 +1072,15 @@ implements android.view.SurfaceHolder.Callback</pre>
 </dl>
 </li>
 </ul>
+<a id="drawPauseScreen(android.graphics.Canvas)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>drawPauseScreen</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;drawPauseScreen&#8203;(android.graphics.Canvas&nbsp;c)</pre>
+</li>
+</ul>
 <a id="updateRocketBitmap()">
 <!--   -->
 </a>
@@ -1108,15 +1099,6 @@ implements android.view.SurfaceHolder.Callback</pre>
 <pre class="methodSignature">public&nbsp;android.graphics.Bitmap&nbsp;getResizedBitmap&#8203;(android.graphics.Bitmap&nbsp;bm,
                                                 int&nbsp;newWidth,
                                                 int&nbsp;newHeight)</pre>
-</li>
-</ul>
-<a id="drawBorder(android.graphics.Bitmap)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>drawBorder</h4>
-<pre class="methodSignature">android.graphics.Bitmap&nbsp;drawBorder&#8203;(android.graphics.Bitmap&nbsp;source)</pre>
 </li>
 </ul>
 <a id="getLinePos()">
