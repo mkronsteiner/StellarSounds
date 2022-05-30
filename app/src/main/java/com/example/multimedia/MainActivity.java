@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_music);
-        mediaPlayer.start();
+        //mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_music);
+        //mediaPlayer.start();
 
         //getSupportActionBar().hide();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -33,12 +33,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Button playButton = (Button) findViewById(R.id.playbutton);
-        final MediaPlayer mp = MediaPlayer.create(getApplicationContext(),R.raw.track1);
+
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.playbutton){
                     Intent i = new Intent(MainActivity.this, GameActivity.class);
-                    mp.start();
+                    //mediaPlayer.pause();
                     startActivity(i);
                 }
             }

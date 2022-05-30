@@ -13,6 +13,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -35,6 +36,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private SurfaceHolder holder;
     private GameLoop gameLoop;
     private LevelMap map;
+
+    //MediaPlayer mediaPlayer;
+
 
     private Random rand;
 
@@ -114,6 +118,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         playButton = BitmapFactory.decodeResource(res, R.drawable.play_edit);
         playButton = getResizedBitmap(playButton, 100, 100);
+
 
         boundingBox = new Rect(0, 0, 0, 0);
 
@@ -250,11 +255,13 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public void pauseGame() {
         paused = true;
         gameLoop.pauseLoop();
+        //mediaPlayer.pause();
     }
 
     public void resumeGame() {
         paused = false;
         gameLoop.resumeLoop();
+        //mediaPlayer.start();
     }
 
     public void addScore(int score) {
