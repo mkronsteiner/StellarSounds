@@ -34,24 +34,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Button playButton = (Button) findViewById(R.id.playbutton);
-
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.playbutton){
                     mediaPlayer.stop();
                     Intent i = new Intent(MainActivity.this, GameActivity.class);
+                    i.putExtra("Level", 1);
                     startActivity(i);
                 }
             }
 
         });
 
-        final Button button = (Button) findViewById(R.id.highscoresButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button highscoresButton = (Button) findViewById(R.id.highscoresButton);
+        highscoresButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.highscoresButton){
                     mediaPlayer.stop();
                     Intent i = new Intent(MainActivity.this, HighscoreActivity.class);
+                    startActivity(i);
+                }
+            }
+
+        });
+
+        final Button levelsButton = (Button) findViewById(R.id.levelsButton);
+        levelsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(v.getId()==R.id.levelsButton){
+                    mediaPlayer.stop();
+                    Intent i = new Intent(MainActivity.this, LevelSelectActivity.class);
                     startActivity(i);
                 }
             }

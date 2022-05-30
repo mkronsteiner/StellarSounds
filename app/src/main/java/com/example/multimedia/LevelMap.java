@@ -79,24 +79,9 @@ public class LevelMap {
         this.shield = shield;
     }
 
-    public void loadMap() {
-        //horizontal positions of map elements are assigned in the map array, vertical positions are stored in vertPos(and changed per frame)
-        //0 = empty, 1 = point, 2 = asteroid, 3 = shield
+    public void loadMap(double[] mapData) {
 
-        //positions on x axis
-        map = new double[] {0.0, 0.0, 0.0, 0.0,
-                            1.5, 1.5, 1.5, 1.5,
-                            1.1, 1.4, 1.3, 3.5,
-                            0.0, 0.0, 0.0, 0.0,
-                            1.5, 1.6, 1.2, 2.5,
-                            0.0, 0.0, 1.2, 1.8,
-                            0.0, 1.2, 1.9, 2.3,
-                            0.0, 0.0, 0.0, 0.0,
-                            1.6, 1.2, 1.8, 1.3,
-                            0.0, 0.0, 0.0, 2.4,
-                            0.0, 0.0, 0.0, 2.8,
-                            0.0, 0.0, 0.0, 2.5,
-                            0.0, 0.0, 0.0, 0.0};
+        map = mapData;
 
         //positions y axis
         vertPos = new double[map.length];

@@ -32,15 +32,16 @@ import java.util.Random;
 
 public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
+    private Random rand;
+
     private Context context;
     private SurfaceHolder holder;
     private GameLoop gameLoop;
-    private LevelMap map;
 
-    //MediaPlayer mediaPlayer;
-
-
-    private Random rand;
+    //LEVEL SELECT
+    private int levelSelect;
+    private double[] data1, data2, data3;
+    private LevelMap map, map1, map2, map3;
 
     //POSITIONS & MOVEMENT
     private double playerPos; //absolute position on screen
@@ -76,7 +77,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     SharedPreferences scores;
     SharedPreferences.Editor editor;
 
-    public GameSurfaceView(Context context) {
+    public GameSurfaceView(Context context, int levelSelect) {
         super(context);
 
         // Callback für Events hinzufügen:
@@ -147,9 +148,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         shieldPower = 180;
         shieldLock = 0;
 
-        map = new LevelMap(this);
+        this.levelSelect = levelSelect;
 
         rand = new Random();
+
+
     }
 
     @Override
@@ -167,8 +170,23 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         isTouching = false;
         playerX = 0;
         playerY = (float) linePos;
+
+        //choose level based on levelSelect parameter and init level (object of LevelMap)
+        //maps are stores in data variables and initialized in initMapData()
+        initMapData();
+
+        double data[];
+        map = new LevelMap(this);
         map.initPos();
-        map.loadMap();
+
+        switch (levelSelect) {
+            case 1: data = data1;
+            case 2: data = data2;
+            case 3: data = data3;
+            default: data = data1;
+        }
+        map.loadMap(data);
+
 
         map.initBitmaps(asteroid, shield);
         background = getResizedBitmap(background, getWidth(), getHeight());
@@ -458,5 +476,29 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         return (int) playerY;
     }
 
+    private void initMapData() {
+        //horizontal positions of map elements are assigned in the map array, vertical positions are stored in vertPos(and changed per frame)
+        //0 = empty, 1 = point, 2 = asteroid, 3 = shield
+
+        //positions on x axis
+        data1 = new double[]
+                {0.0, 0.0, 0.0, 0.0,
+                1.5, 1.5, 1.5, 1.5,
+                1.1, 1.4, 1.3, 3.5,
+                0.0, 0.0, 0.0, 0.0,
+                1.5, 1.6, 1.2, 2.5,
+                0.0, 0.0, 1.2, 1.8,
+                0.0, 1.2, 1.9, 2.3,
+                0.0, 0.0, 0.0, 0.0,
+                1.6, 1.2, 1.8, 1.3,
+                0.0, 0.0, 0.0, 2.4,
+                0.0, 0.0, 0.0, 2.8,
+                0.0, 0.0, 0.0, 2.5,
+                0.0, 0.0, 0.0, 0.0};
+
+        data2 = data1;
+
+        data3 = data1;
+    }
 }
 

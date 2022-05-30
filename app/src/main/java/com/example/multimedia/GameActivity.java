@@ -19,6 +19,7 @@ GameActivity holds the GameSurfaceView and Gameloop
 public class GameActivity extends AppCompatActivity {
 
     private GameSurfaceView gameView;
+    private int levelSelect;
     //MediaPlayer mp;
 
     @Override
@@ -30,9 +31,14 @@ public class GameActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        gameView = new GameSurfaceView(this);
-        setContentView(gameView);
+        levelSelect = 1;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            levelSelect = extras.getInt("level");
+        }
 
+        gameView = new GameSurfaceView(this, levelSelect);
+        setContentView(gameView);
 
     }
 
