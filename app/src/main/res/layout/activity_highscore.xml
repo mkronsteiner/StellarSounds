@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".HighscoreActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:src="@drawable/background" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/highscoreRecycler"
         android:layout_width="wrap_content"

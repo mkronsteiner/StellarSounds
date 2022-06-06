@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -67,7 +68,17 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private Bitmap pauseButton, playButton, bigPauseButton;
     private Bitmap soundOffButton, soundOnButton;
     final private Paint red, text, white;
-    private Rect boundingBox;
+
+    //ANIMATION
+    private int frameCount;
+    private int currentFrame;
+    private int frameWidth;
+    private int frameHeight;
+    private long lastFrameChangeTime;
+    private int frameLength;
+    private Rect animationFrame;
+    private Rect frameLoc;
+
 
     //MUSIC
     private MediaPlayer mp;
@@ -96,15 +107,15 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         Resources res = context.getResources();
 
-        rocket1 = BitmapFactory.decodeResource(res, R.drawable.rocket_first_stage_small);
-        rocket1 = getResizedBitmap(rocket1, rocket1.getWidth()/5, rocket1.getHeight()/5);
+        int scale = 6;
+        rocket1 = BitmapFactory.decodeResource(res, R.drawable.rocket_sheet1);
+        rocket1 = getResizedBitmap(rocket1, rocket1.getWidth()/scale, rocket1.getHeight()/(scale));
 
-        rocket2 = BitmapFactory.decodeResource(res, R.drawable.rocket_second_stage_small);
-        rocket2 = getResizedBitmap(rocket2, rocket2.getWidth()/5, rocket2.getHeight()/5);
+        rocket2 = BitmapFactory.decodeResource(res, R.drawable.rocket_sheet2);
+        rocket2 = getResizedBitmap(rocket2, rocket2.getWidth()/scale, rocket2.getHeight()/(scale));
 
-
-        rocket3 = BitmapFactory.decodeResource(res, R.drawable.rocket_third_stage_small);
-        rocket3 = getResizedBitmap(rocket3, rocket3.getWidth()/5, rocket3.getHeight()/5);
+        rocket3 = BitmapFactory.decodeResource(res, R.drawable.rocket_sheet3);
+        rocket3 = getResizedBitmap(rocket3, rocket3.getWidth()/scale, rocket3.getHeight()/(scale));
 
         rocket = rocket1;
 
@@ -130,8 +141,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         soundOnButton = BitmapFactory.decodeResource(res, R.drawable.soundon_edit);
         soundOnButton = getResizedBitmap(soundOnButton, 100, 100);
-
-        boundingBox = new Rect(0, 0, 0, 0);
 
         red = new Paint();
         red.setColor(Color.RED);
@@ -174,12 +183,23 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         //init
         playerPos = getWidth() / 2;
-        linePos = getHeight() - 800;
-        charaHeight = rocket1.getHeight();
-        charaWidth = rocket1.getWidth();
+        linePos = getHeight() - 600;
         isTouching = false;
-        playerX = 0;
         playerY = (float) linePos;
+
+        frameCount = 4;
+        currentFrame = 0;
+        frameWidth = rocket1.getWidth()/frameCount;
+        frameHeight = rocket1.getHeight();
+        lastFrameChangeTime = 0;
+        frameLength = 1000;
+        animationFrame = new Rect(0, 0, frameWidth, frameHeight);
+
+        playerX = (float) playerPos - frameWidth/2.0f;
+        frameLoc = new Rect((int) playerX, (int) playerY, (int) playerX + frameWidth, (int) playerY + frameWidth);
+
+        charaHeight = frameHeight;
+        charaWidth = frameWidth;
 
         //choose level based on levelSelect parameter and init level (object of LevelMap)
         //maps are stores in data variables and initialized in initMapData()
@@ -397,10 +417,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         map.draw(c);
 
         //rocket
+        playerX = (float) playerPos - frameWidth/2.0f;
+        frameLoc.set((int) playerX, (int) playerY, (int) playerX + frameWidth, (int) playerY+frameHeight);
 
-        playerX = (float) playerPos - rocket.getWidth()/2.0f;
-
-        c.drawBitmap(rocket, playerX, playerY, null);
+        switchAnimationFrame();
+        c.drawBitmap(rocket, animationFrame, frameLoc, null);
 
         if (!paused) c.drawBitmap(pauseButton,20,120, null);
 
@@ -409,7 +430,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         if (invincibilityTime > 0) {
             //Log.d("GameSurfaceView.draw()", "invincibility");
-            c.drawCircle(playerX+150, playerY+300, 400, white);
+            c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f, frameHeight/2.0f, white);
         }
 
         //text
@@ -420,6 +441,22 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     }
 
+    public void switchAnimationFrame(){
+
+        long time  = System.currentTimeMillis();
+        if ( time > lastFrameChangeTime + frameLength) {
+            lastFrameChangeTime = time;
+            currentFrame ++;
+            if (currentFrame >= frameCount) {
+                currentFrame = 0;
+            }
+        }
+        //update the left and right values of the source of
+        //the next frame on the spritesheet
+        animationFrame.left = currentFrame * frameWidth;
+        animationFrame.right = animationFrame.left + frameWidth;
+    }
+
     public void drawPauseScreen(Canvas c) {
         Log.d("GameSurfaceView", "drawing pause screen");
 
@@ -428,7 +465,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         map.draw(c);
 
         playerX = (float) playerPos - rocket.getWidth()/2.0f;
-        c.drawBitmap(rocket, playerX, playerY, null);
+        //c.drawBitmap(rocket, playerX, playerY, null);
 
         c.drawBitmap(playButton,20,120, null);
 
