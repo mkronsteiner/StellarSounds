@@ -58,5 +58,18 @@ public class LevelSelectActivity extends AppCompatActivity {
             }
 
         });
+
+        final Button introButton = (Button) findViewById(R.id.watchIntroButton);
+        introButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(v.getId()==R.id.watchIntroButton){
+                    Log.d("GameOverActivity", "try again clicked");
+                    Intent i = new Intent(LevelSelectActivity.this, IntroVideoActivity.class);
+                    //i.putExtra("level", 3);
+                    startActivity(i);
+                }
+            }
+
+        });
     }
 }

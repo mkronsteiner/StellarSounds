@@ -13,19 +13,15 @@ import android.widget.Button;
 
 
 /**
- MainActivity is the entryway to our application. For Testing purposes it currently holds "play" and "highscore" buttons to open the other activities
+ MainActivity is the entryway to our application. It holds the start menu activity.
  @author Mirjam Kronsteiner
  */
 
 public class MainActivity extends AppCompatActivity {
-    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_music);
-        mediaPlayer.start();
 
         //getSupportActionBar().hide();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -37,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.playbutton){
-                    mediaPlayer.stop();
                     Intent i = new Intent(MainActivity.this, GameActivity.class);
                     i.putExtra("Level", 1);
                     startActivity(i);
@@ -50,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         highscoresButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.highscoresButton){
-                    mediaPlayer.stop();
                     Intent i = new Intent(MainActivity.this, HighscoreActivity.class);
                     startActivity(i);
                 }
@@ -62,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         levelsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.levelsButton){
-                    mediaPlayer.stop();
                     Intent i = new Intent(MainActivity.this, LevelSelectActivity.class);
                     startActivity(i);
                 }

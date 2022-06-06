@@ -158,6 +158,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
 
+        MusicPlayer.stopAudio();
 
         gameLoop.startLoop();
         paused = false;
