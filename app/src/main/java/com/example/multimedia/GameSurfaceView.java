@@ -50,7 +50,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private double charaWidth;
     private double charaHeight;
     private boolean isTouching;
-    private boolean paused;
+    private boolean paused, muted;
 
     //GAMEPLAY
     private int lives;
@@ -65,6 +65,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private Bitmap background;
     private Bitmap asteroid, shield;
     private Bitmap pauseButton, playButton, bigPauseButton;
+    private Bitmap soundOffButton, soundOnButton;
     final private Paint red, text, white;
     private Rect boundingBox;
 
@@ -92,8 +93,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         setFocusable(true);
 
         // z.B. Ressourcen initialisieren
-        mp = MediaPlayer.create(context,R.raw.track1);
-        mp.start();
 
         Resources res = context.getResources();
 
@@ -111,7 +110,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         background = BitmapFactory.decodeResource(res, R.drawable.background);
 
-        asteroid = BitmapFactory.decodeResource(res, R.drawable.meteor);
+        asteroid = BitmapFactory.decodeResource(res, R.drawable.meteor_edit);
         asteroid = getResizedBitmap(asteroid, 150, 150);
 
         shield = BitmapFactory.decodeResource(res, R.drawable.shield_edit);
@@ -126,6 +125,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         playButton = BitmapFactory.decodeResource(res, R.drawable.play_edit);
         playButton = getResizedBitmap(playButton, 100, 100);
 
+        soundOffButton = BitmapFactory.decodeResource(res, R.drawable.soundoff_edit);
+        soundOffButton = getResizedBitmap(soundOffButton, 100, 100);
+
+        soundOnButton = BitmapFactory.decodeResource(res, R.drawable.soundon_edit);
+        soundOnButton = getResizedBitmap(soundOnButton, 100, 100);
 
         boundingBox = new Rect(0, 0, 0, 0);
 
@@ -150,6 +154,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         this.levelSelect = levelSelect;
 
+        mp = MediaPlayer.create(context,R.raw.track1);
+
         rand = new Random();
 
 
@@ -162,6 +168,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         gameLoop.startLoop();
         paused = false;
+        muted = false;
+
+        mp.start();
 
         //init
         playerPos = getWidth() / 2;
@@ -236,6 +245,15 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             } else if (startX > 20 && startX < 120 && startY > 120 && startY < 220) {
                 if (!paused) pauseGame();
                 else resumeGame();
+            //Sound button
+            } else if (startX > getRight()-soundOffButton.getWidth() -20 && startX < getRight() - 20 && startY > 120 && startY < 220) {
+                if (!muted) {
+                    mp.pause();
+                    muted = true;
+                } else {
+                    mp.start();
+                    muted = false;
+                }
             //testing button
             } else if (startX > 20 && startX < 120 && startY > 320 && startY < 420) {
 
@@ -386,6 +404,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         if (!paused) c.drawBitmap(pauseButton,20,120, null);
 
+        if (!muted) c.drawBitmap(soundOffButton, getRight()-soundOffButton.getWidth()-20, 120, null);
+        else c.drawBitmap(soundOnButton, getRight()-soundOnButton.getWidth()-20, 120, null);
 
         if (invincibilityTime > 0) {
             //Log.d("GameSurfaceView.draw()", "invincibility");
