@@ -36,7 +36,7 @@ public class HighscoreAdapter extends RecyclerView.Adapter<HighscoreViewHolder> 
     public void onBindViewHolder(HighscoreViewHolder holder, int i) {
 
         if (data.get(i) != null) {
-            holder.myTextView.setText(data.get(i).toString());
+            holder.myTextView.setText(i+1 + ". " +data.get(i).toString());
         } else {
             holder.myTextView.setText("empty");
         }

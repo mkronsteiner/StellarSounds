@@ -64,7 +64,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private Bitmap rocket, rocket1, rocket2, rocket3, rocketFrame;
     private float playerX, playerY;
     private Bitmap background;
-    private Bitmap asteroid, shield;
+    private Bitmap asteroid, shield, star;
     private Bitmap pauseButton, playButton, bigPauseButton;
     private Bitmap soundOffButton, soundOnButton;
     final private Paint red, text, white;
@@ -132,6 +132,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         shield = BitmapFactory.decodeResource(res, R.drawable.shield_edit);
         shield = getResizedBitmap(shield, 150, 150);
+
+        star = BitmapFactory.decodeResource(res, R.drawable.star);
+        star = getResizedBitmap(star, 100, 100);
 
         pauseButton = BitmapFactory.decodeResource(res, R.drawable.pause_edit);
         pauseButton = getResizedBitmap(pauseButton, 100, 100);
@@ -225,7 +228,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         map.loadMap(data);
 
 
-        map.initBitmaps(asteroid, shield);
+        map.initBitmaps(asteroid, shield, star);
         background = getResizedBitmap(background, getWidth(), getHeight());
 
 

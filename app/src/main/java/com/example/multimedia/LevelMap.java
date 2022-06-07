@@ -26,8 +26,10 @@ public class LevelMap {
 
     private double[] map;
     private double[] vertPos;
+    private int width;
+    private float itemWidth, itemHeight, starWidth, starHeight;
 
-    private Bitmap asteroid, shield;
+    private Bitmap asteroid, shield, star;
 
     final private Paint white, red, blue, whiteLine;
 
@@ -79,11 +81,20 @@ public class LevelMap {
         player = view.getPlayer();
         playerX = view.getPlayerX();
         playerY = view.getPlayerY();
+
+        width = view.getWidth();
+
     }
 
-    public void initBitmaps(Bitmap asteroid, Bitmap shield) {
+    public void initBitmaps(Bitmap asteroid, Bitmap shield, Bitmap star) {
         this.asteroid = asteroid;
         this.shield = shield;
+        this.star = star;
+
+        itemWidth = (float) asteroid.getWidth();
+        itemHeight = (float) asteroid.getHeight();
+        starWidth = (float) star.getWidth();
+        starHeight = (float) star.getHeight();
     }
 
     /**
@@ -170,11 +181,22 @@ public class LevelMap {
      * @param c Canvas
      */
     public void draw(Canvas c) {
-        int width = view.getWidth();
-        float itemWidth = (float) asteroid.getWidth();
-        float itemHeight = (float) asteroid.getHeight();
+
         playerX = view.getPlayerX();
         //Log.d("LevelMap.draw", "playerX= " + playerX);
+
+        //draw note edges
+        float lastX, lastY, nextX, nextY;
+        for (int i = 1; i < map.length; i++) {
+            //check if this and the previous node are note points and not items/empty
+            if (map[i-1] > 1 && map[i-1] < 2 && map[i] > 1 && map[i] < 2) {
+                lastX = (float) (leftBound + (map[i-1] -1) * width);
+                lastY = (float) vertPos[i-1];
+                nextX = (float) (leftBound + (map[i] - 1) * width);
+                nextY = (float) vertPos[i];
+                c.drawLine(lastX, lastY, nextX, nextY, nextY <= bottomPos ? white : red);
+            }
+        }
 
         //draw items & note points
         double cur;
@@ -188,7 +210,8 @@ public class LevelMap {
                 if (cur > 1 && cur < 2) {
                     float x = (float) (leftBound + (cur - 1) * width);
                     float y = (float) vertPos[i];
-                    c.drawCircle(x, y, 30, y <= bottomPos ? white : red);
+                    c.drawBitmap(star,x  - starHeight/2, y - starWidth/2, null);
+                    //c.drawCircle(x, y, 30, y <= bottomPos ? white : red);
                     //c.drawLine(view.getLeft(), y, view.getRight(), y, red);
                     //Log.d("LevelMap.draw()", "drawing point at" + x);
 
@@ -225,18 +248,6 @@ public class LevelMap {
 
         }
 
-        //draw note edges
-        float lastX, lastY, nextX, nextY;
-        for (int i = 1; i < map.length; i++) {
-            //check if this and the previous node are note points and not items/empty
-            if (map[i-1] > 1 && map[i-1] < 2 && map[i] > 1 && map[i] < 2) {
-                lastX = (float) (leftBound + (map[i-1] -1) * width);
-                lastY = (float) vertPos[i-1];
-                nextX = (float) (leftBound + (map[i] - 1) * width);
-                nextY = (float) vertPos[i];
-                c.drawLine(lastX, lastY, nextX, nextY, nextY <= bottomPos ? white : red);
-            }
-        }
 
         //Log.d("LevelMap.draw", "done");
     }
