@@ -61,7 +61,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private int shieldLock; //like invincibility time, prevents shield from being collected more than once
 
     //GRAPHICS
-    private Bitmap rocket, rocket1, rocket2, rocket3;
+    private Bitmap rocket, rocket1, rocket2, rocket3, rocketFrame;
     private float playerX, playerY;
     private Bitmap background;
     private Bitmap asteroid, shield;
@@ -78,7 +78,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private int frameLength;
     private Rect animationFrame;
     private Rect frameLoc;
-
 
     //MUSIC
     private MediaPlayer mp;
@@ -107,6 +106,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         Resources res = context.getResources();
 
+        //Initialise and resize all Bitmaps
+
         int scale = 6;
         rocket1 = BitmapFactory.decodeResource(res, R.drawable.rocket_sheet1);
         rocket1 = getResizedBitmap(rocket1, rocket1.getWidth()/scale, rocket1.getHeight()/(scale));
@@ -116,6 +117,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         rocket3 = BitmapFactory.decodeResource(res, R.drawable.rocket_sheet3);
         rocket3 = getResizedBitmap(rocket3, rocket3.getWidth()/scale, rocket3.getHeight()/(scale));
+
+        //Rocket Bitmap for Collision detection, with the flames cropped since they don't count for collision
+        rocketFrame = BitmapFactory.decodeResource(res, R.drawable.rocket_first_stage_small);
+        rocketFrame = getResizedBitmap(rocketFrame, rocket1.getWidth()/4, rocket1.getHeight());
+        rocketFrame = Bitmap.createBitmap(rocketFrame, 0, 0, rocketFrame.getWidth(), rocketFrame.getHeight()/2 +100);
 
         rocket = rocket1;
 
@@ -173,13 +179,14 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
 
-        MusicPlayer.stopAudio();
+        //stop all other music playing
+        if (MusicPlayer.isPlaying) MusicPlayer.stopAudio();
 
         gameLoop.startLoop();
         paused = false;
-        muted = false;
 
         mp.start();
+        muted = false;
 
         //init
         playerPos = getWidth() / 2;
@@ -287,6 +294,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         return true;
     }
 
+    /**
+     * updates the values per frame (item times, points earned) and calls update() in LevelMap
+     * checks if lives == 0
+     */
     public void update() {
 
         if (invincibilityTime > 0) invincibilityTime--;
@@ -298,35 +309,40 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         updatePoints();
 
         if (lives == 0) {
-            Log.d("collideWithAsteroid", "lives <= 0");
+            Log.d("update()", "lives <= 0");
             gameOver();
 
         }
         //Log.d("update", "cur:" + map.getCurrent());
     }
 
+    /**
+     * Implements Game Over state, starts the GameOverActivity
+     */
     public void gameOver() {
         gameLoop.pauseLoop();
         pauseGame();
         addScore(points);
 
-        GameActivity activity = (GameActivity) context;
-        activity.createGameOver();
-
         mp.stop();
+
+        Intent i = new Intent(context, GameOverActivity.class);
+        context.startActivity(i);
     }
 
+    /**
+     * Implements Game Win state, starts the GameWinActivity
+     */
     public void gameWin() {
         gameLoop.pauseLoop();
+        pauseGame();
         addScore(points);
 
         mp.stop();
 
-
-        GameActivity activity = (GameActivity) context;
-        activity.createGameWin(points);
-
-
+        Intent i = new Intent(context, GameWinActivity.class);
+        i.putExtra("points", points);
+        context.startActivity(i);
     }
 
     public void pauseGame() {
@@ -341,6 +357,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         gameLoop.resumeLoop();
     }
 
+    /**
+     * add a score to the shared preferences holding the highscore list
+     * @param score the score to add
+     */
     public void addScore(int score) {
         scores = context.getSharedPreferences(PREFS_NAME, PREFS_MODE);
         editor = scores.edit();
@@ -360,26 +380,26 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         //Log.d("updatePoints()", "rel:" + relPlayerPos);
 
         double dif; //difference between player position and current map value
-        if (map.isTouching()) {
-            dif = Math.abs(relPlayerPos - map.getCurrent());
-        } else {
-            dif = 0.0;
-        }
-        //Log.d("updatePoints()", "dif: " + dif);
 
         //point gain based on dif
-        if (dif == 0.0) {
-
-        } else if (dif > 0.0 && dif < 0.015) {
-            points += 3;
-        } else if (dif < 0.035) {
-            points += 2;
-        } else if (dif < 0.055) {
-            points += 1;
+        if (map.isTouching()) {
+            dif = Math.abs(relPlayerPos - map.getCurrent());
+            if (dif >= 0.0 && dif < 0.015) {
+                points += 3;
+            } else if (dif < 0.035) {
+                points += 2;
+            } else if (dif < 0.055) {
+                points += 1;
+            }
+            //Log.d("updatePoints()", "dif: " + dif);
         }
 
     }
 
+    /**
+     * called by LevelMap.draw() on collision with an asteroid
+     * invincibilityTime is used as a countdown so asteroids are not counted twice in one collision
+     */
     public void collideWithAsteroid() {
         if (invincibilityTime == 0) {
             lives--;
@@ -392,6 +412,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     }
 
+    /**
+     * called by LevelMap.draw() on collision with a shield
+     * shieldLock is used as a countdown so shields cannot be collected twice in one collision
+     */
     public void collideWithShield() {
         if (shieldLock == 0) {
             invincibilityTime = shieldPower;
@@ -402,6 +426,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
 
 
+    /**
+     * draws rocket and ui elements and calls draw in LevelMap
+     * @param c the canvas to draw on
+     */
     public void draw(Canvas c) {
         //Log.d("GameSurfaceView.java", "draw()");
         super.draw(c);
@@ -430,7 +458,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         if (invincibilityTime > 0) {
             //Log.d("GameSurfaceView.draw()", "invincibility");
-            c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f, frameHeight/2.0f, white);
+            c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
         }
 
         //text
@@ -441,6 +469,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     }
 
+    /**
+     * calculate frame on the sprite sheet and replace animationFrame with the current frame
+     */
     public void switchAnimationFrame(){
 
         long time  = System.currentTimeMillis();
@@ -457,32 +488,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         animationFrame.right = animationFrame.left + frameWidth;
     }
 
-    public void drawPauseScreen(Canvas c) {
-        Log.d("GameSurfaceView", "drawing pause screen");
-
-        c.drawBitmap(background, 0, 0, null);
-
-        map.draw(c);
-
-        playerX = (float) playerPos - rocket.getWidth()/2.0f;
-        //c.drawBitmap(rocket, playerX, playerY, null);
-
-        c.drawBitmap(playButton,20,120, null);
-
-        if (invincibilityTime > 0) {
-            //Log.d("GameSurfaceView.draw()", "invincibility");
-            c.drawCircle(playerX+150, playerY+300, 400, white);
-        }
-
-        c.drawText("Lives: " + lives, 30, 100, text);
-        c.drawText("Points: " + points, getRight() / 2.0f, 100, text);
-        c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
-
-        int margin = 100;
-        //c.drawRect(new Rect(margin, margin, getWidth() - margin, getHeight() - margin), white);
-        c.drawBitmap(bigPauseButton, getRight()/2.0f - bigPauseButton.getWidth()/2.0f, getBottom()/2.0f - bigPauseButton.getHeight()/2.0f, null);
-    }
-
+    /**
+     * switch the rocket bitmap based on remaining lives
+     */
     private void updateRocketBitmap() {
 
         switch (lives) {
@@ -499,6 +507,33 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                 rocket = rocket1;
                 break;
         }
+    }
+
+    public void drawPauseScreen(Canvas c) {
+        Log.d("GameSurfaceView", "drawing pause screen");
+
+        c.drawBitmap(background, 0, 0, null);
+
+        map.draw(c);
+
+        playerX = (float) playerPos - frameWidth/2.0f;
+        frameLoc.set((int) playerX, (int) playerY, (int) playerX + frameWidth, (int) playerY+frameHeight);
+        c.drawBitmap(rocket, animationFrame, frameLoc, null);
+
+        c.drawBitmap(playButton,20,120, null);
+
+        if (invincibilityTime > 0) {
+            //Log.d("GameSurfaceView.draw()", "invincibility");
+            c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
+        }
+
+        c.drawText("Lives: " + lives, 30, 100, text);
+        c.drawText("Points: " + points, getRight() / 2.0f, 100, text);
+        c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
+
+        int margin = 100;
+        //c.drawRect(new Rect(margin, margin, getWidth() - margin, getHeight() - margin), white);
+        c.drawBitmap(bigPauseButton, getRight()/2.0f - bigPauseButton.getWidth()/2.0f, getBottom()/2.0f - bigPauseButton.getHeight()/2.0f, null);
     }
 
     public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
@@ -523,7 +558,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     public Bitmap getPlayer() {
-        return rocket3;
+        return rocketFrame;
     }
 
     public int getPlayerX() {
@@ -534,6 +569,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         return (int) playerY;
     }
 
+    /**
+     * Initialize the level data
+     * Level values are stored in "data" arrays
+     */
     private void initMapData() {
         //horizontal positions of map elements are assigned in the map array, vertical positions are stored in vertPos(and changed per frame)
         //0 = empty, 1 = point, 2 = asteroid, 3 = shield

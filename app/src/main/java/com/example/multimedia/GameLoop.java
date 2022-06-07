@@ -154,8 +154,5 @@ public class GameLoop extends Thread {
         return fps;
     }
 
-    public void drawTest(Canvas c) {
-        game.draw(c);
-    }
 
 }

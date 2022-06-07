@@ -11,6 +11,10 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.Log;
 
+/**
+ * LevelMap holds one game level and handles drawing and interaction with game objects (items and points)
+ */
+
 public class LevelMap {
 
     GameSurfaceView view;
@@ -66,6 +70,9 @@ public class LevelMap {
 
     }
 
+    /**
+     * load positions from GameSurfaceView
+     */
     public void initPos() {
         leftBound = view.getLeft();
         bottomPos = view.getLinePos();
@@ -79,11 +86,15 @@ public class LevelMap {
         this.shield = shield;
     }
 
+    /**
+     * initialize level data
+     * @param mapData array containing the level data values
+     */
     public void loadMap(double[] mapData) {
 
         map = mapData;
 
-        //positions y axis
+        //array of the same length holding vertical positions of elements
         vertPos = new double[map.length];
 
         int j = 2;
@@ -93,15 +104,11 @@ public class LevelMap {
         }
     }
 
-    //get the value or item at the current position
-    public double getCurrent() {
-        return current;
-    }
-
-    public double interpolate(double a, double b, double pos) {
-        return (b - a) * pos + a;
-    }
-
+    /**
+     * advance the position of the elements
+     * check for Game Win if the level has ended
+     * calculate the current value at the position of the rocket (linePos)
+     */
     public void update() {
         //advance time
         t += speed;
@@ -138,13 +145,30 @@ public class LevelMap {
             touching = false;
         }
 
-
-
         //Log.d("LevelMap.update()", "Current: " + current);
     }
 
+    /**
+     * get the element at the current position
+     */
+    public double getCurrent() {
+        return current;
+    }
+
+    public double interpolate(double a, double b, double pos) {
+        return (b - a) * pos + a;
+    }
+
+    /**
+     * for points calculation
+     * @return if a note is being read this frame (and not an item or empty space)
+     */
     public boolean isTouching() { return touching; }
 
+    /**
+     * draw all level elements and check for collisions with items
+     * @param c Canvas
+     */
     public void draw(Canvas c) {
         int width = view.getWidth();
         float itemWidth = (float) asteroid.getWidth();
@@ -218,7 +242,15 @@ public class LevelMap {
     }
 
 
-    //COLLISION DETECTION
+    /**
+     * Check for collision of two Bitmaps
+     * @param bitmap1 First bitmap
+     * @param x1 x-position of bitmap1 on screen.
+     * @param y1 y-position of bitmap1 on screen.
+     * @param bitmap2 Second bitmap.
+     * @param x2 x-position of bitmap2 on screen.
+     * @param y2 y-position of bitmap2 on screen.
+     */
     public boolean isCollisionDetected(Bitmap bitmap1, int x1, int y1,
                                        Bitmap bitmap2, int x2, int y2) {
 
@@ -252,6 +284,11 @@ public class LevelMap {
         return pixel != Color.TRANSPARENT;
     }
 
+    /**
+     * for testing, draw the bounding box of a Bitmap
+     * @param source Bitmap to draw
+     * @return the Bitmap with a border
+     */
     Bitmap drawBorder(Bitmap source) {
         int width = source.getWidth();
         int height = source.getHeight();

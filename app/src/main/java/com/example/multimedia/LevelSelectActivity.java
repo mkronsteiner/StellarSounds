@@ -10,6 +10,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * LevelSelectActivity holds the Level selection screen.
+ */
+
 public class LevelSelectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -424,41 +424,46 @@ implements android.view.SurfaceHolder.Callback</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>private android.graphics.Bitmap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rocketFrame">rocketFrame</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>(package private) android.content.SharedPreferences</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#scores">scores</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>private android.graphics.Bitmap</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shield">shield</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shieldLock">shieldLock</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>private int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shieldPower">shieldPower</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>private android.graphics.Bitmap</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#soundOffButton">soundOffButton</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>private android.graphics.Bitmap</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#soundOnButton">soundOnButton</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>private android.graphics.Paint</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#text">text</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>private android.graphics.Paint</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#white">white</a></span></code></th>
 <td class="colLast">&nbsp;</td>
@@ -513,22 +518,32 @@ implements android.view.SurfaceHolder.Callback</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addScore(int)">addScore</a></span>&#8203;(int&nbsp;score)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">add a score to the shared preferences holding the highscore list</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#collideWithAsteroid()">collideWithAsteroid</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">called by LevelMap.draw() on collision with an asteroid
+ invincibilityTime is used as a countdown so asteroids are not counted twice in one collision</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#collideWithShield()">collideWithShield</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">called by LevelMap.draw() on collision with a shield
+ shieldLock is used as a countdown so shields cannot be collected twice in one collision</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#draw(android.graphics.Canvas)">draw</a></span>&#8203;(android.graphics.Canvas&nbsp;c)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">draws rocket and ui elements and calls draw in LevelMap</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -538,12 +553,16 @@ implements android.view.SurfaceHolder.Callback</pre>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#gameOver()">gameOver</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Implements Game Over state, starts the GameOverActivity</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#gameWin()">gameWin</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Implements Game Win state, starts the GameWinActivity</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>double</code></td>
@@ -575,7 +594,10 @@ implements android.view.SurfaceHolder.Callback</pre>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>private void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#initMapData()">initMapData</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Initialize the level data
+ Level values are stored in "data" arrays</div>
+</td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -613,12 +635,17 @@ implements android.view.SurfaceHolder.Callback</pre>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#switchAnimationFrame()">switchAnimationFrame</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">calculate frame on the sprite sheet and replace animationFrame with the current frame</div>
+</td>
 </tr>
 <tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">updates the values per frame (item times, points earned) and calls update() in LevelMap
+ checks if lives == 0</div>
+</td>
 </tr>
 <tr id="i21" class="rowColor">
 <td class="colFirst"><code>private void</code></td>
@@ -628,7 +655,9 @@ implements android.view.SurfaceHolder.Callback</pre>
 <tr id="i22" class="altColor">
 <td class="colFirst"><code>private void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updateRocketBitmap()">updateRocketBitmap</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">switch the rocket bitmap based on remaining lives</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -927,6 +956,15 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>rocket3</h4>
 <pre>private&nbsp;android.graphics.Bitmap rocket3</pre>
+</li>
+</ul>
+<a id="rocketFrame">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>rocketFrame</h4>
+<pre>private&nbsp;android.graphics.Bitmap rocketFrame</pre>
 </li>
 </ul>
 <a id="playerX">
@@ -1263,6 +1301,8 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>update</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;update()</pre>
+<div class="block">updates the values per frame (item times, points earned) and calls update() in LevelMap
+ checks if lives == 0</div>
 </li>
 </ul>
 <a id="gameOver()">
@@ -1272,6 +1312,7 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>gameOver</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;gameOver()</pre>
+<div class="block">Implements Game Over state, starts the GameOverActivity</div>
 </li>
 </ul>
 <a id="gameWin()">
@@ -1281,6 +1322,7 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>gameWin</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;gameWin()</pre>
+<div class="block">Implements Game Win state, starts the GameWinActivity</div>
 </li>
 </ul>
 <a id="pauseGame()">
@@ -1308,6 +1350,11 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>addScore</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addScore&#8203;(int&nbsp;score)</pre>
+<div class="block">add a score to the shared preferences holding the highscore list</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>score</code> - the score to add</dd>
+</dl>
 </li>
 </ul>
 <a id="updatePoints()">
@@ -1326,6 +1373,8 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>collideWithAsteroid</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;collideWithAsteroid()</pre>
+<div class="block">called by LevelMap.draw() on collision with an asteroid
+ invincibilityTime is used as a countdown so asteroids are not counted twice in one collision</div>
 </li>
 </ul>
 <a id="collideWithShield()">
@@ -1335,6 +1384,8 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>collideWithShield</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;collideWithShield()</pre>
+<div class="block">called by LevelMap.draw() on collision with a shield
+ shieldLock is used as a countdown so shields cannot be collected twice in one collision</div>
 </li>
 </ul>
 <a id="draw(android.graphics.Canvas)">
@@ -1344,9 +1395,12 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>draw</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;draw&#8203;(android.graphics.Canvas&nbsp;c)</pre>
+<div class="block">draws rocket and ui elements and calls draw in LevelMap</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>draw</code>&nbsp;in class&nbsp;<code>android.view.SurfaceView</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>c</code> - the canvas to draw on</dd>
 </dl>
 </li>
 </ul>
@@ -1357,15 +1411,7 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>switchAnimationFrame</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;switchAnimationFrame()</pre>
-</li>
-</ul>
-<a id="drawPauseScreen(android.graphics.Canvas)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>drawPauseScreen</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;drawPauseScreen&#8203;(android.graphics.Canvas&nbsp;c)</pre>
+<div class="block">calculate frame on the sprite sheet and replace animationFrame with the current frame</div>
 </li>
 </ul>
 <a id="updateRocketBitmap()">
@@ -1375,6 +1421,16 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>updateRocketBitmap</h4>
 <pre class="methodSignature">private&nbsp;void&nbsp;updateRocketBitmap()</pre>
+<div class="block">switch the rocket bitmap based on remaining lives</div>
+</li>
+</ul>
+<a id="drawPauseScreen(android.graphics.Canvas)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>drawPauseScreen</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;drawPauseScreen&#8203;(android.graphics.Canvas&nbsp;c)</pre>
 </li>
 </ul>
 <a id="getResizedBitmap(android.graphics.Bitmap,int,int)">
@@ -1431,6 +1487,8 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>initMapData</h4>
 <pre class="methodSignature">private&nbsp;void&nbsp;initMapData()</pre>
+<div class="block">Initialize the level data
+ Level values are stored in "data" arrays</div>
 </li>
 </ul>
 </li>

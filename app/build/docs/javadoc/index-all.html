@@ -98,7 +98,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/example/multimedia/HighscoreActivity.html#adapter">adapter</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/HighscoreActivity.html" title="class in com.example.multimedia">HighscoreActivity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#addScore(int)">addScore(int)</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">add a score to the shared preferences holding the highscore list</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#animationFrame">animationFrame</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#asteroid">asteroid</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
@@ -130,16 +132,18 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#charaWidth">charaWidth</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#collideWithAsteroid()">collideWithAsteroid()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">called by LevelMap.draw() on collision with an asteroid
+ invincibilityTime is used as a countdown so asteroids are not counted twice in one collision</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#collideWithShield()">collideWithShield()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">called by LevelMap.draw() on collision with a shield
+ shieldLock is used as a countdown so shields cannot be collected twice in one collision</div>
+</dd>
 <dt><a href="com/example/multimedia/package-summary.html">com.example.multimedia</a> - package com.example.multimedia</dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#context">context</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/example/multimedia/GameActivity.html#createGameOver()">createGameOver()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameActivity.html" title="class in com.example.multimedia">GameActivity</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/example/multimedia/GameActivity.html#createGameWin(int)">createGameWin(int)</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameActivity.html" title="class in com.example.multimedia">GameActivity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#current">current</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
 <dd>&nbsp;</dd>
@@ -160,14 +164,18 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#data3">data3</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#draw(android.graphics.Canvas)">draw(Canvas)</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">draws rocket and ui elements and calls draw in LevelMap</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#draw(android.graphics.Canvas)">draw(Canvas)</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">draw all level elements and check for collisions with items</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#drawBorder(android.graphics.Bitmap)">drawBorder(Bitmap)</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">for testing, draw the bounding box of a Bitmap</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#drawPauseScreen(android.graphics.Canvas)">drawPauseScreen(Canvas)</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/example/multimedia/GameLoop.html#drawTest(android.graphics.Canvas)">drawTest(Canvas)</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameLoop.html" title="class in com.example.multimedia">GameLoop</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a id="I:E">
@@ -224,9 +232,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameObject.html#%3Cinit%3E()">GameObject()</a></span> - Constructor for class com.example.multimedia.<a href="com/example/multimedia/GameObject.html" title="class in com.example.multimedia">GameObject</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#gameOver()">gameOver()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Implements Game Over state, starts the GameOverActivity</div>
+</dd>
 <dt><a href="com/example/multimedia/GameOverActivity.html" title="class in com.example.multimedia"><span class="typeNameLink">GameOverActivity</span></a> - Class in <a href="com/example/multimedia/package-summary.html">com.example.multimedia</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">GameOverActivity holds the Game Over Screen</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameOverActivity.html#%3Cinit%3E()">GameOverActivity()</a></span> - Constructor for class com.example.multimedia.<a href="com/example/multimedia/GameOverActivity.html" title="class in com.example.multimedia">GameOverActivity</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia"><span class="typeNameLink">GameSurfaceView</span></a> - Class in <a href="com/example/multimedia/package-summary.html">com.example.multimedia</a></dt>
@@ -238,15 +250,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameActivity.html#gameView">gameView</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameActivity.html" title="class in com.example.multimedia">GameActivity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#gameWin()">gameWin()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Implements Game Win state, starts the GameWinActivity</div>
+</dd>
 <dt><a href="com/example/multimedia/GameWinActivity.html" title="class in com.example.multimedia"><span class="typeNameLink">GameWinActivity</span></a> - Class in <a href="com/example/multimedia/package-summary.html">com.example.multimedia</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">GameOverActivity holds the Game Win Screen and displays points earned</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameWinActivity.html#%3Cinit%3E()">GameWinActivity()</a></span> - Constructor for class com.example.multimedia.<a href="com/example/multimedia/GameWinActivity.html" title="class in com.example.multimedia">GameWinActivity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#getCollisionBounds(android.graphics.Rect,android.graphics.Rect)">getCollisionBounds(Rect, Rect)</a></span> - Static method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#getCurrent()">getCurrent()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">get the element at the current position</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameLoop.html#getFps()">getFps()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameLoop.html" title="class in com.example.multimedia">GameLoop</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/HighscoreAdapter.html#getItemCount()">getItemCount()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/HighscoreAdapter.html" title="class in com.example.multimedia">HighscoreAdapter</a></dt>
@@ -298,19 +316,28 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#initBitmaps(android.graphics.Bitmap,android.graphics.Bitmap)">initBitmaps(Bitmap, Bitmap)</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#initMapData()">initMapData()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Initialize the level data
+ Level values are stored in "data" arrays</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#initPos()">initPos()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">load positions from GameSurfaceView</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#interpolate(double,double,double)">interpolate(double, double, double)</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/example/multimedia/IntroVideoActivity.html" title="class in com.example.multimedia"><span class="typeNameLink">IntroVideoActivity</span></a> - Class in <a href="com/example/multimedia/package-summary.html">com.example.multimedia</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">IntroVideoActivity holds the Intro Video Player</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/IntroVideoActivity.html#%3Cinit%3E()">IntroVideoActivity()</a></span> - Constructor for class com.example.multimedia.<a href="com/example/multimedia/IntroVideoActivity.html" title="class in com.example.multimedia">IntroVideoActivity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#invincibilityTime">invincibilityTime</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#isCollisionDetected(android.graphics.Bitmap,int,int,android.graphics.Bitmap,int,int)">isCollisionDetected(Bitmap, int, int, Bitmap, int, int)</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Check for collision of two Bitmaps</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#isFilled(int)">isFilled(int)</a></span> - Static method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/MusicPlayer.html#isPlaying">isPlaying</a></span> - Static variable in class com.example.multimedia.<a href="com/example/multimedia/MusicPlayer.html" title="class in com.example.multimedia">MusicPlayer</a></dt>
@@ -320,7 +347,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#isTouching">isTouching</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#isTouching()">isTouching()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">for points calculation</div>
+</dd>
 </dl>
 <a id="I:L">
 <!--   -->
@@ -332,7 +361,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#leftBound">leftBound</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia"><span class="typeNameLink">LevelMap</span></a> - Class in <a href="com/example/multimedia/package-summary.html">com.example.multimedia</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">LevelMap holds one game level and handles drawing and interaction with game objects (items and points)</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#%3Cinit%3E(com.example.multimedia.GameSurfaceView)">LevelMap(GameSurfaceView)</a></span> - Constructor for class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameActivity.html#levelSelect">levelSelect</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameActivity.html" title="class in com.example.multimedia">GameActivity</a></dt>
@@ -340,7 +371,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#levelSelect">levelSelect</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/example/multimedia/LevelSelectActivity.html" title="class in com.example.multimedia"><span class="typeNameLink">LevelSelectActivity</span></a> - Class in <a href="com/example/multimedia/package-summary.html">com.example.multimedia</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">LevelSelectActivity holds the Level selection screen.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelSelectActivity.html#%3Cinit%3E()">LevelSelectActivity()</a></span> - Constructor for class com.example.multimedia.<a href="com/example/multimedia/LevelSelectActivity.html" title="class in com.example.multimedia">LevelSelectActivity</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#linePos">linePos</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
@@ -348,7 +381,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#lives">lives</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#loadMap(double%5B%5D)">loadMap(double[])</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">initialize level data</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/HighscoreActivity.html#loadPrefs()">loadPrefs()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/HighscoreActivity.html" title="class in com.example.multimedia">HighscoreActivity</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -495,6 +530,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#rocket3">rocket3</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#rocketFrame">rocketFrame</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameLoop.html#run()">run()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameLoop.html" title="class in com.example.multimedia">GameLoop</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -538,7 +575,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameLoop.html#suspended">suspended</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameLoop.html" title="class in com.example.multimedia">GameLoop</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#switchAnimationFrame()">switchAnimationFrame()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">calculate frame on the sprite sheet and replace animationFrame with the current frame</div>
+</dd>
 </dl>
 <a id="I:T">
 <!--   -->
@@ -560,13 +599,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h2 class="title">U</h2>
 <dl>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#update()">update()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">updates the values per frame (item times, points earned) and calls update() in LevelMap
+ checks if lives == 0</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/LevelMap.html#update()">update()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/LevelMap.html" title="class in com.example.multimedia">LevelMap</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">advance the position of the elements
+ check for Game Win if the level has ended
+ calculate the current value at the position of the rocket (linePos)</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#updatePoints()">updatePoints()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameSurfaceView.html#updateRocketBitmap()">updateRocketBitmap()</a></span> - Method in class com.example.multimedia.<a href="com/example/multimedia/GameSurfaceView.html" title="class in com.example.multimedia">GameSurfaceView</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">switch the rocket bitmap based on remaining lives</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameLoop.html#ups">ups</a></span> - Variable in class com.example.multimedia.<a href="com/example/multimedia/GameLoop.html" title="class in com.example.multimedia">GameLoop</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/example/multimedia/GameLoop.html#UPS_PERIOD">UPS_PERIOD</a></span> - Static variable in class com.example.multimedia.<a href="com/example/multimedia/GameLoop.html" title="class in com.example.multimedia">GameLoop</a></dt>

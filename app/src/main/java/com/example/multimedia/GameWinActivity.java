@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * GameOverActivity holds the Game Win Screen and displays points earned
+ */
+
 public class GameWinActivity extends AppCompatActivity {
 
     int points;

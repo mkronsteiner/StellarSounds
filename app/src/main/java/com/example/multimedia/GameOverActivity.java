@@ -10,6 +10,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+/**
+ * GameOverActivity holds the Game Over Screen
+ */
+
 public class GameOverActivity extends AppCompatActivity {
 
     @Override

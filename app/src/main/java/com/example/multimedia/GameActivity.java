@@ -41,18 +41,4 @@ public class GameActivity extends AppCompatActivity {
         setContentView(gameView);
 
     }
-
-    public void createGameOver() {
-        Intent i = new Intent(this, GameOverActivity.class);
-        startActivity(i);
-
-
-    }
-
-    public void createGameWin(int points) {
-        Intent i = new Intent(this, GameWinActivity.class);
-        i.putExtra("points", points);
-        startActivity(i);
-
-    }
 }

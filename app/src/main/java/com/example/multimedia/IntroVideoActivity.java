@@ -11,6 +11,9 @@ import android.view.MotionEvent;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+/**
+ * IntroVideoActivity holds the Intro Video Player
+ */
 public class IntroVideoActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener {
 
     MediaController mediaPlayer;
@@ -42,6 +45,7 @@ public class IntroVideoActivity extends AppCompatActivity implements MediaPlayer
 
     public boolean onTouchEvent(MotionEvent e) {
 
+        //skip the video
         if (e.getAction() == MotionEvent.ACTION_DOWN) {
             Log.d("IntroVideoActivity", "skipping intro video");
             Intent i = new Intent(IntroVideoActivity.this, MainActivity.class);
