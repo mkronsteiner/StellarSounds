@@ -14,9 +14,14 @@ import android.widget.ImageView;
 
 public class TutorialScreen extends AppCompatActivity {
 
+    private boolean skipping;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        skipping = false;
+
         setContentView(R.layout.activity_tutorial_screen);
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -26,13 +31,15 @@ public class TutorialScreen extends AppCompatActivity {
         animation.setDuration(500);
         image.startAnimation(animation);
 
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                Intent i=new Intent(TutorialScreen.this,GameActivity.class);
-                i.putExtra("level", 1);
-                startActivity(i);
+                if (!skipping) {
+                    Intent i = new Intent(TutorialScreen.this, GameActivity.class);
+                    i.putExtra("level", 1);
+                    startActivity(i);
+                }
             }
         }, 5000);
     }
@@ -41,7 +48,9 @@ public class TutorialScreen extends AppCompatActivity {
 
         if (e.getAction() == MotionEvent.ACTION_DOWN) {
             Log.d("IntroVideoActivity", "skipping tutorial splash screen");
+            skipping = true;
             Intent i = new Intent(TutorialScreen.this, GameActivity.class);
+            i.putExtra("level", 1);
             startActivity(i);
         }
         return true;
