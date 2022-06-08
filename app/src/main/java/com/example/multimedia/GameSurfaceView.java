@@ -122,7 +122,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         rocket3 = getResizedBitmap(rocket3, rocket3.getWidth()/scale, rocket3.getHeight()/(scale));
 
         rocketShield = BitmapFactory.decodeResource(res, R.drawable.rocket_shield);
-        rocketShield = getResizedBitmap(rocketShield, rocket3.getWidth()/scale, rocket3.getHeight()/(scale));
+        rocketShield = getResizedBitmap(rocketShield, (rocket3.getWidth()/4), rocket3.getHeight());
 
         //Rocket Bitmap for Collision detection, with the flames cropped since they don't count for collision
         rocketFrame = BitmapFactory.decodeResource(res, R.drawable.rocket_first_stage_small);
@@ -400,7 +400,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             } else if (dif < 0.055) {
                 points += 1;
             }
-            Log.d("updatePoints()", "dif: " + dif);
+            //Log.d("updatePoints()", "dif: " + dif);
         }
 
     }
@@ -467,7 +467,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         if (invincibilityTime >= 0) {
             //c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
-            c.drawBitmap(rocketShield, animationFrame, frameLoc, null);
+            c.drawBitmap(rocketShield, (int) playerX, (int) playerY, null);
         }
 
         //text
