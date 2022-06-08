@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.WindowManager;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -26,6 +27,8 @@ public class IntroVideoActivity extends AppCompatActivity implements MediaPlayer
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_video);
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         view = (VideoView) findViewById(R.id.videoView);
         view.setMediaController(mediaPlayer);

@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.playbutton){
-                    Intent i = new Intent(MainActivity.this, GameActivity.class);
-                    i.putExtra("Level", 1);
+                    Intent i = new Intent(MainActivity.this, TutorialScreen.class);
                     startActivity(i);
                 }
             }

@@ -227,6 +227,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         map = new LevelMap(this);
         map.initPos();
 
+        Log.d("LevelSelect", "Level: " + levelSelect);
         switch (levelSelect) {
             case 1: data = data1;
             case 2: data = data2;
@@ -465,7 +466,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         if (!muted) c.drawBitmap(soundOffButton, getRight()-soundOffButton.getWidth()-20, 120, null);
         else c.drawBitmap(soundOnButton, getRight()-soundOnButton.getWidth()-20, 120, null);
 
-        if (invincibilityTime >= 0) {
+        if (invincibilityTime > 0) {
             //c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
             c.drawBitmap(rocketShield, (int) playerX, (int) playerY, null);
         }
@@ -473,7 +474,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         //text
         c.drawText("Lives: " + lives, 30, 100, text);
         c.drawText("Points: " + points, getRight() / 2.0f +50, 100, text);
-        c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
+        //c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
         //c.drawRect(20, 320, 120, 420, red); //testing button
 
     }
@@ -539,7 +540,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         c.drawText("Lives: " + lives, 30, 100, text);
         c.drawText("Points: " + points, getRight() / 2.0f +50, 100, text);
-        c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
+        //c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
 
         int margin = 100;
         //c.drawRect(new Rect(margin, margin, getWidth() - margin, getHeight() - margin), white);
@@ -589,9 +590,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         //positions on x axis
         data1 = new double[]
-                {0.0, 0.0, 0.0, 0.0,
-                1.5, 1.5, 1.5, 1.5,
-                1.1, 1.4, 1.3, 3.5,
+                {0.0, 1.5, 1.4, 1.2,
+                0.0, 2.4, 0.0, 3.8,
                 0.0, 0.0, 0.0, 0.0,
                 1.5, 1.6, 1.2, 2.5,
                 0.0, 0.0, 1.2, 1.8,
