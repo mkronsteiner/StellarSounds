@@ -64,7 +64,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private int shieldLock; //like invincibility time, prevents shield from being collected more than once
 
     //GRAPHICS
-    private Bitmap rocket, rocket1, rocket2, rocket3, rocketFrame;
+    private Bitmap rocket, rocket1, rocket2, rocket3, rocketFrame, rocketShield;
     private float playerX, playerY;
     private Bitmap background;
     private Bitmap asteroid, shield, star;
@@ -120,6 +120,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         rocket3 = BitmapFactory.decodeResource(res, R.drawable.rocket_sheet3);
         rocket3 = getResizedBitmap(rocket3, rocket3.getWidth()/scale, rocket3.getHeight()/(scale));
+
+        rocketShield = BitmapFactory.decodeResource(res, R.drawable.rocket_shield);
+        rocketShield = getResizedBitmap(rocketShield, rocket3.getWidth()/scale, rocket3.getHeight()/(scale));
 
         //Rocket Bitmap for Collision detection, with the flames cropped since they don't count for collision
         rocketFrame = BitmapFactory.decodeResource(res, R.drawable.rocket_first_stage_small);
@@ -462,10 +465,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         if (!muted) c.drawBitmap(soundOffButton, getRight()-soundOffButton.getWidth()-20, 120, null);
         else c.drawBitmap(soundOnButton, getRight()-soundOnButton.getWidth()-20, 120, null);
 
-        if (invincibilityTime > 0) {
-            //Log.d("GameSurfaceView.draw()", "invincibility");
-            c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
-            //c.drawCircle(playerX+frameWidth/2.0f +20, playerY+frameHeight/2.0f , frameHeight/2.0f, whiteShield);
+        if (invincibilityTime >= 0) {
+            //c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
+            c.drawBitmap(rocketShield, animationFrame, frameLoc, null);
         }
 
         //text
