@@ -41,7 +41,6 @@ public class LevelSelectActivity extends AppCompatActivity {
         level2Button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.buttonLevel2){
-                    Log.d("GameOverActivity", "try again clicked");
                     Intent i = new Intent(LevelSelectActivity.this, GameActivity.class);
                     i.putExtra("level", 2);
                     startActivity(i);
@@ -54,7 +53,6 @@ public class LevelSelectActivity extends AppCompatActivity {
         level3Button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.buttonLevel3){
-                    Log.d("GameOverActivity", "try again clicked");
                     Intent i = new Intent(LevelSelectActivity.this, GameActivity.class);
                     i.putExtra("level", 3);
                     startActivity(i);
@@ -67,7 +65,6 @@ public class LevelSelectActivity extends AppCompatActivity {
         introButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.watchIntroButton){
-                    Log.d("GameOverActivity", "try again clicked");
                     Intent i = new Intent(LevelSelectActivity.this, IntroVideoActivity.class);
                     //i.putExtra("level", 3);
                     startActivity(i);

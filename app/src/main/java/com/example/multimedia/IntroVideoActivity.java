@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 /**
@@ -44,6 +46,14 @@ public class IntroVideoActivity extends AppCompatActivity implements MediaPlayer
         view.start();
 
 
+        //remove the text after a few sec
+        TextView textView = findViewById(R.id.skipTextView);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                textView.setText("");
+            }
+        }, 2000);
     }
 
     public boolean onTouchEvent(MotionEvent e) {

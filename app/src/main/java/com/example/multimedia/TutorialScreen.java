@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -33,5 +35,15 @@ public class TutorialScreen extends AppCompatActivity {
                 startActivity(i);
             }
         }, 5000);
+    }
+
+    public boolean onTouchEvent(MotionEvent e) {
+
+        if (e.getAction() == MotionEvent.ACTION_DOWN) {
+            Log.d("IntroVideoActivity", "skipping tutorial splash screen");
+            Intent i = new Intent(TutorialScreen.this, GameActivity.class);
+            startActivity(i);
+        }
+        return true;
     }
 }

@@ -229,10 +229,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         Log.d("LevelSelect", "Level: " + levelSelect);
         switch (levelSelect) {
-            case 1: data = data1;
-            case 2: data = data2;
-            case 3: data = data3;
-            default: data = data1;
+            case 1: data = data1; break;
+            case 2: data = data2; break;
+            case 3: data = data3; break;
+            default: data = data1; break;
         }
         map.loadMap(data);
 
