@@ -533,8 +533,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         c.drawBitmap(playButton,20,120, null);
 
         if (invincibilityTime > 0) {
+
+            c.drawBitmap(rocketShield, (int) playerX, (int) playerY, null);
+
             //Log.d("GameSurfaceView.draw()", "invincibility");
-            c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
+            //c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
             //c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, whiteShield);
         }
 
@@ -603,9 +606,35 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                 0.0, 0.0, 0.0, 2.5,
                 0.0, 0.0, 0.0, 0.0};
 
-        data2 = data1;
+        data2 = new double[]
+                {0.0, 0.0, 1.1, 1.8,
+                0.0, 0.0, 1.1, 1.8,
+                0.0, 1.1, 1.8, 1.5,
+                1.8, 0.0, 3.5, 0.0,
+                1.2, 1.5, 2.5, 1.5,
+                1.2, 0.0, 1.2, 1.8,
+                0.0, 1.2, 1.9, 2.3,
+                0.0, 0.0, 0.0, 0.0,
+                1.6, 1.2, 1.8, 1.3,
+                0.0, 0.0, 0.0, 2.4,
+                0.0, 0.0, 0.0, 2.8,
+                0.0, 0.0, 0.0, 2.5,
+                0.0, 0.0, 0.0, 0.0};
 
-        data3 = data1;
+        data3 = new double[]
+                {0.0, 0.0, 2.5, 1.2,
+                1.9, 1.4, 0.0, 1.2,
+                1.9, 1.5, 1.7, 1.6,
+                0.0, 2.6, 3.5, 2.5,
+                0.0, 1.5, 1.4, 1.3,
+                1.6, 0.0, 2.5, 3.7,
+                0.0, 1.2, 1.9, 1.4,
+                0.0, 1.2, 1.9, 1.4,
+                0.0, 2.2, 2.1, 0.0,
+                1.3, 1.6, 0.0, 2.4, //*
+                0.0, 0.0, 0.0, 2.8,
+                0.0, 0.0, 0.0, 2.5,
+                0.0, 0.0, 0.0, 0.0};
     }
 }
 
