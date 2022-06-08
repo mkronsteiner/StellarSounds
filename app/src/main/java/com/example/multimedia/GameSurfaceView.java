@@ -468,7 +468,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         if (invincibilityTime > 0) {
             //c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
-            c.drawBitmap(rocketShield, (int) playerX, (int) playerY, null);
+            c.drawBitmap(rocketShield, (int) playerX-3, (int) playerY-12, null);
         }
 
         //text
@@ -534,7 +534,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         if (invincibilityTime > 0) {
 
-            c.drawBitmap(rocketShield, (int) playerX, (int) playerY, null);
+            c.drawBitmap(rocketShield, (int) playerX-3, (int) playerY-12, null);
 
             //Log.d("GameSurfaceView.draw()", "invincibility");
             //c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
@@ -607,7 +607,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                 0.0, 0.0, 0.0, 0.0};
 
         data2 = new double[]
-                {0.0, 0.0, 1.1, 1.8,
+                {3.5, 0.0, 1.1, 1.8,
                 0.0, 0.0, 1.1, 1.8,
                 0.0, 1.1, 1.8, 1.5,
                 1.8, 0.0, 3.5, 0.0,
