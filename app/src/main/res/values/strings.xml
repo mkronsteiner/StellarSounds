@@ -1,12 +1,21 @@
 <resources>
-    <string name="app_name">multimedia</string>
-    <string name="title_activity_game_over">GameOverActivity</string>
+    <string name="app_name">Stellar Sounds</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="touchToSkip">touch to skip</string>
+    <string name="selectLevel">select level</string>
+    <string name="highscores" translatable="false">highscores</string>
+    <string name="level" translatable="false">level</string>
+    <string name="watchIntro">watch intro video</string>
+    <string name="clearScores">clear</string>
+    <string name="win">win!</string>
+    <string name="gameOver">game over!</string>
+    <string name="pointsCollected">%1$d points collected</string>
+    <string name="tryAgain">try again</string>
+    <string name="returnB">return</string>
+    <string name="play">play</string>
+    <string name="language">language</string>
+    <string name="settings">settings</string>
+    <string name="newhighscore">new \n highscore!</string>
+    <string name="lives">LIVES</string>
+    <string name="points">POINTS</string>
 </resources>

@@ -23,7 +23,7 @@
         android:rotationX="27"
         android:rotationY="9"
         android:scaleX="1.5"
-        android:text="stellar * \n SOUNDS"
+        android:text="stellar \n SOUNDS"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
         android:textColor="@color/white"
@@ -41,9 +41,9 @@
         style="?attr/buttonBarNegativeButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PLAY"
+        android:text="@string/play"
         android:textColor="@color/white"
-        android:textSize="50dp"
+        android:textSize="47dp"
         android:textStyle="bold"
         app:icon="@drawable/play_edit"
         app:iconTint="#FFC107"
@@ -54,27 +54,40 @@
         app:layout_constraintVertical_bias="0.6" />
 
     <Button
+        android:id="@+id/levelsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/selectLevel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.757" />
+
+    <Button
         android:id="@+id/highscoresButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HIGHSCORES"
+        android:text="@string/highscores"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.827" />
 
     <Button
-        android:id="@+id/levelsButton"
+        android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SELECT LEVEL"
+        android:text="@string/settings"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.757" />
+        app:layout_constraintVertical_bias="0.95" />
 
     <ImageView
         android:id="@+id/imageView3"

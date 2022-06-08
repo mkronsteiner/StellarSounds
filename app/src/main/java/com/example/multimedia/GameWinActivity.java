@@ -3,6 +3,7 @@ package com.example.multimedia;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,8 @@ public class GameWinActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "ScoresFile";
     public static final int PREFS_MODE = Context.MODE_PRIVATE;
 
+    Resources res;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,8 @@ public class GameWinActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_game_win);
 
+        res = getResources();
+
         points = 0;
 
         Bundle extras = getIntent().getExtras();
@@ -46,7 +51,8 @@ public class GameWinActivity extends AppCompatActivity {
         }
 
         TextView view = (TextView) findViewById(R.id.pointsTextView);
-        view.setText(points + " Points collected");
+        String text = getString(R.string.pointsCollected, points);
+        view.setText(text);
 
         //Load the highscores list and check if points are a new highscore
         ArrayList<Integer> testData = new ArrayList<>();
@@ -65,7 +71,7 @@ public class GameWinActivity extends AppCompatActivity {
         Collections.sort(testData,  Collections.reverseOrder());
 
         TextView hsview = (TextView) findViewById(R.id.newHighscoreTextView);
-        if (testData.get(0) == null || points >= testData.get(0)) hsview.setText("new \n highscore!");
+        if (testData.get(0) == null || points >= testData.get(0)) hsview.setText(res.getString(R.string.newhighscore));
         else hsview.setText("");
 
         final Button playAgainButton = (Button) findViewById(R.id.tryAgainButtonWin);

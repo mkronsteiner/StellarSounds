@@ -3,6 +3,7 @@ package com.example.multimedia;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Button;
  */
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(v.getId()==R.id.levelsButton){
                     Intent i = new Intent(MainActivity.this, LevelSelectActivity.class);
+                    startActivity(i);
+                }
+            }
+
+        });
+
+        final Button settingsButton = (Button) findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(v.getId()==R.id.settingsButton){
+                    Intent i = new Intent(MainActivity.this, SettingsActivity.class);
                     startActivity(i);
                 }
             }

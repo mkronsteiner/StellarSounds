@@ -10,11 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Multimedia">
         <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".TutorialScreen"
             android:exported="false" />
         <activity
             android:name=".IntroScreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

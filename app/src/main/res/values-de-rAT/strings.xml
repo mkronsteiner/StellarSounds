@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Stellar Sounds</string>
+    <string name="touchToSkip">überspringen</string>
+    <string name="selectLevel">level auswählen</string>
+    <string name="watchIntro">introvideo ansehen</string>
+    <string name="clearScores">löschen</string>
+    <string name="win">gewonnen!</string>
+    <string name="gameOver">spiel vorbei!</string>
+    <string name="pointsCollected">%1$d punkte gesammelt</string>
+    <string name="tryAgain">nocheinmal spielen</string>
+    <string name="returnB">zurück</string>
+    <string name="play">spielen</string>
+    <string name="language">sprache</string>
+    <string name="settings">einstellungen</string>
+    <string name="newhighscore" translatable="false">neuer \n highscore!</string>
+    <string name="lives">LEBEN</string>
+    <string name="points">PUNKTE</string>
+</resources>

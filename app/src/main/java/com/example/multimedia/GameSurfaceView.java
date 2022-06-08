@@ -39,6 +39,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private Random rand;
 
     private Context context;
+    private Resources res;
     private SurfaceHolder holder;
     private GameLoop gameLoop;
 
@@ -71,6 +72,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private Bitmap pauseButton, playButton, bigPauseButton;
     private Bitmap soundOffButton, soundOnButton;
     final private Paint red, text, white;
+
+    static private boolean showFPS = true; //render fps count
 
     //ANIMATION
     private int frameCount;
@@ -107,7 +110,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         // z.B. Ressourcen initialisieren
 
-        Resources res = context.getResources();
+        res = context.getResources();
 
         //Initialise and resize all Bitmaps
 
@@ -163,7 +166,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         text = new Paint();
         text.setColor(Color.WHITE);
-        text.setTextSize(80);
+        text.setTextSize(60);
         Typeface type = ResourcesCompat.getFont(context, R.font.aldrich);
         text.setTypeface(type);
 
@@ -472,9 +475,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         }
 
         //text
-        c.drawText("Lives: " + lives, 30, 100, text);
-        c.drawText("Points: " + points, getRight() / 2.0f +50, 100, text);
-        //c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
+        c.drawText(res.getString(R.string.lives) + ": " + lives, 30, 100, text);
+        c.drawText(res.getString(R.string.points) + ": " + + points, getRight() / 2.0f +50, 100, text);
+        if (showFPS) c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
         //c.drawRect(20, 320, 120, 420, red); //testing button
 
     }
@@ -541,9 +544,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             //c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, whiteShield);
         }
 
-        c.drawText("Lives: " + lives, 30, 100, text);
-        c.drawText("Points: " + points, getRight() / 2.0f +50, 100, text);
-        //c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
+        c.drawText(res.getString(R.string.lives) + ": " + lives, 30, 100, text);
+        c.drawText(res.getString(R.string.points) + ": " + + points, getRight() / 2.0f +50, 100, text);
+        if (showFPS) c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
 
         int margin = 100;
         //c.drawRect(new Rect(margin, margin, getWidth() - margin, getHeight() - margin), white);
