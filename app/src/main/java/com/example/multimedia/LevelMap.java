@@ -41,6 +41,7 @@ public class LevelMap {
     private double temp;
     private double current;
     private boolean touching;
+    private int touchingCounter;
 
     public LevelMap(GameSurfaceView view) {
         this.view = view;
@@ -52,6 +53,7 @@ public class LevelMap {
         temp = 0;
         current = 0;
         touching = false;
+        touchingCounter = 0; //wait a few frames at the beginning of a note
 
         white = new Paint();
         white.setColor(Color.WHITE);
@@ -130,20 +132,38 @@ public class LevelMap {
         }
 
         //calculate the current value of the note at the line (bottom) position
+        //index = index of the current element in the level map
         double indexc = (t/margin)-1;
         index = (int) Math.floor(indexc);
 
+        //if the map has ended, go to game win state
         if (index >= map.length-1) {
             Log.d("LevelMap.update()", "map ended");
             view.gameWin();
         }
 
+        //temp = value at the current index
         if (index >= 0 && index < map.length-1) {
             int prev = index-1;
             int next = index;
             temp = map[index];
+
+            //if a note is currently being touched
             if (temp > 1 && temp < 2) {
-                touching = true;
+
+                //fix for wrong calculation: wait a few frames before setting touching=true
+                if (!touching && touchingCounter == 0) {
+                    touchingCounter = 20;
+                } else if (!touching && touchingCounter > 1) {
+                    touchingCounter--;
+                } else if (!touching && touchingCounter == 1){
+                    touching = true;
+                    touchingCounter--;
+                } else {
+                    touching = true;
+                }
+
+                //interpolate between previous and this node
                 double pos = indexc - Math.floor(indexc);
                 current = interpolate(map[prev], map[next], pos);
                 current = (Math.round((current - Math.floor(current))*100))/100.0;

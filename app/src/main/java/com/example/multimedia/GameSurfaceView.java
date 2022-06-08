@@ -3,6 +3,7 @@ package com.example.multimedia;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,6 +22,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
+
+import androidx.core.content.res.ResourcesCompat;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -158,6 +161,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         text = new Paint();
         text.setColor(Color.WHITE);
         text.setTextSize(80);
+        Typeface type = ResourcesCompat.getFont(context, R.font.aldrich);
+        text.setTypeface(type);
 
         white = new Paint();
         white.setColor(Color.WHITE);
@@ -323,7 +328,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
      * Implements Game Over state, starts the GameOverActivity
      */
     public void gameOver() {
-        gameLoop.pauseLoop();
         pauseGame();
         addScore(points);
 
@@ -337,7 +341,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
      * Implements Game Win state, starts the GameWinActivity
      */
     public void gameWin() {
-        gameLoop.pauseLoop();
         pauseGame();
         addScore(points);
 
@@ -387,14 +390,14 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         //point gain based on dif
         if (map.isTouching()) {
             dif = Math.abs(relPlayerPos - map.getCurrent());
-            if (dif >= 0.0 && dif < 0.015) {
+            if (dif > 0.0 && dif < 0.015) {
                 points += 3;
             } else if (dif < 0.035) {
                 points += 2;
             } else if (dif < 0.055) {
                 points += 1;
             }
-            //Log.d("updatePoints()", "dif: " + dif);
+            Log.d("updatePoints()", "dif: " + dif);
         }
 
     }
@@ -462,11 +465,12 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         if (invincibilityTime > 0) {
             //Log.d("GameSurfaceView.draw()", "invincibility");
             c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
+            //c.drawCircle(playerX+frameWidth/2.0f +20, playerY+frameHeight/2.0f , frameHeight/2.0f, whiteShield);
         }
 
         //text
         c.drawText("Lives: " + lives, 30, 100, text);
-        c.drawText("Points: " + points, getRight() / 2.0f, 100, text);
+        c.drawText("Points: " + points, getRight() / 2.0f +50, 100, text);
         c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
         //c.drawRect(20, 320, 120, 420, red); //testing button
 
@@ -528,10 +532,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         if (invincibilityTime > 0) {
             //Log.d("GameSurfaceView.draw()", "invincibility");
             c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, white);
+            //c.drawCircle(playerX+frameWidth/2.0f, playerY+frameHeight/2.0f - 20, frameHeight/2.0f + 40, whiteShield);
         }
 
         c.drawText("Lives: " + lives, 30, 100, text);
-        c.drawText("Points: " + points, getRight() / 2.0f, 100, text);
+        c.drawText("Points: " + points, getRight() / 2.0f +50, 100, text);
         c.drawText("FPS:" + Math.round(gameLoop.getFps()*100)/100, 30, getBottom()-50, text);
 
         int margin = 100;
