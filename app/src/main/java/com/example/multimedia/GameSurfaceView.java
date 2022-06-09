@@ -31,7 +31,7 @@ import java.util.Random;
 
 /**
  GameSurfaceView holds all objects of the game, implements update and render methods
- @author Mirjam Kronsteiner
+ @author Mirjam Kronsteiner and Cornelia Kraus
  */
 
 public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callback {

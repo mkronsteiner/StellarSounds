@@ -15,7 +15,7 @@ import android.widget.Button;
 
 /**
  MainActivity is the entryway to our application. It holds the start menu activity.
- @author Mirjam Kronsteiner
+ @author Mirjam Kronsteiner and Cornelia Kraus
  */
 
 public class MainActivity extends AppCompatActivity {
