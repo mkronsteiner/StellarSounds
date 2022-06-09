@@ -13,6 +13,7 @@ import android.util.Log;
 
 /**
  * LevelMap holds one game level and handles drawing and interaction with game objects (items and points)
+ * @author Mirjam Kronsteiner
  */
 
 public class LevelMap {
@@ -275,6 +276,7 @@ public class LevelMap {
 
     /**
      * Check for collision of two Bitmaps
+     * source: https://stackoverflow.com/a/7430359
      * @param bitmap1 First bitmap
      * @param x1 x-position of bitmap1 on screen.
      * @param y1 y-position of bitmap1 on screen.
@@ -315,26 +317,4 @@ public class LevelMap {
         return pixel != Color.TRANSPARENT;
     }
 
-    /**
-     * for testing, draw the bounding box of a Bitmap
-     * @param source Bitmap to draw
-     * @return the Bitmap with a border
-     */
-    Bitmap drawBorder(Bitmap source) {
-        int width = source.getWidth();
-        int height = source.getHeight();
-        Bitmap bitmap = Bitmap.createBitmap(width, height, source.getConfig());
-        Canvas canvas = new Canvas(bitmap);
-        Paint paint = new Paint();
-        paint.setStrokeWidth(50);
-        paint.setColor(Color.WHITE);
-
-        canvas.drawLine(0, 0, width, 0, paint);
-        canvas.drawLine(width, 0, width, height, paint);
-        canvas.drawLine(width, height, 0, height, paint);
-        canvas.drawLine(0, height, 0, 0, paint);
-        canvas.drawBitmap(source, 0, 0, null);
-
-        return bitmap;
-    }
 }
