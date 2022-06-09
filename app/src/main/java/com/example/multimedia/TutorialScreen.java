@@ -3,8 +3,10 @@ package com.example.multimedia;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
@@ -30,6 +32,12 @@ public class TutorialScreen extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.tutorialscreen_animation);
         animation.setDuration(500);
         image.startAnimation(animation);
+
+        //check language and change image if de
+        Resources res = this.getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        if (conf.locale.getLanguage().equals("de")) image.setImageResource(R.drawable.help_de);
 
 
         new Handler().postDelayed(new Runnable() {

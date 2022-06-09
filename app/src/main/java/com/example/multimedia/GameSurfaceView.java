@@ -135,7 +135,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
         background = BitmapFactory.decodeResource(res, R.drawable.background);
 
-        asteroid = BitmapFactory.decodeResource(res, R.drawable.meteor_edit);
+        asteroid = BitmapFactory.decodeResource(res, R.drawable.meteor);
         asteroid = getResizedBitmap(asteroid, 150, 150);
 
         shield = BitmapFactory.decodeResource(res, R.drawable.shield_edit);

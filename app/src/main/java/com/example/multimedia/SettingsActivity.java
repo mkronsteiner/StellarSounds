@@ -25,8 +25,7 @@ import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    public static final String PREFS_NAME = "LanguageFile";
-    public static final int PREFS_MODE = Context.MODE_PRIVATE;
+    private Resources res;
 
     static private boolean showFPS = false; //render fps count
 
@@ -47,7 +46,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         });
 
-        Resources res = this.getResources();
+        res = this.getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         android.content.res.Configuration conf = res.getConfiguration();
 
@@ -79,18 +78,24 @@ public class SettingsActivity extends AppCompatActivity {
 
         //If FPS button is clicked change showFPS and update text
         final TextView fpsSwitch = findViewById(R.id.fpsSwitchText);
-        if (showFPS) fpsSwitch.setText(res.getString(R.string.on));
-        else fpsSwitch.setText(res.getString(R.string.off));
+        fpsSwitch.setText(res.getString(getOnOff()));
         fpsSwitch.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(v.getId()==R.id.fpsSwitchText){
                     showFPS = !showFPS;
-                    if (showFPS) fpsSwitch.setText(res.getString(R.string.on));
-                    else fpsSwitch.setText(res.getString(R.string.off));
+                    fpsSwitch.setText(res.getString(getOnOff()));
                 }
             }
 
         });
+    }
+
+    /**
+     * @return the id of the "on" or "off" string based on showFPS value
+     */
+    private int getOnOff() {
+        if (showFPS) return R.string.on;
+        else return R.string.off;
     }
 
     /**
@@ -99,20 +104,12 @@ public class SettingsActivity extends AppCompatActivity {
     private void updateStringLanguage() {
         TextView languageText = findViewById(R.id.textLanguage);
         languageText.setText(R.string.language);
+        TextView fpsText = findViewById(R.id.textFPS);
+        fpsText.setText(R.string.showfps);
+        TextView fpsSwitch = findViewById(R.id.fpsSwitchText);
+        fpsSwitch.setText(res.getString(getOnOff()));
         Button returnText = findViewById(R.id.returnButtonSettings);
         returnText.setText(R.string.returnB);
-    }
-
-    /**
-     * save the selected language
-     * @param context context
-     * @param language the new language
-     */
-    private void persist(Context context, String language) {
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, PREFS_MODE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(PREFS_NAME, language);
-        editor.apply();
     }
 
     static public boolean getShowFPS() {
