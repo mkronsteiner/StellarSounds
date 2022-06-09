@@ -25,8 +25,6 @@ public class IntroVideoActivity extends AppCompatActivity implements MediaPlayer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        MusicPlayer.playAudio(this, R.raw.menu_music);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_video);
 
@@ -39,7 +37,7 @@ public class IntroVideoActivity extends AppCompatActivity implements MediaPlayer
         mediaPlayer = new MediaController(this);
         mediaPlayer.setAnchorView(view);
 
-        String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.testvideo;
+        String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.stellarsounds_intro;
         Uri uri = Uri.parse(uriPath);
         view.setVideoURI(uri);
         view.requestFocus();
