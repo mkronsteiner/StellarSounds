@@ -72,8 +72,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private Bitmap pauseButton, playButton, bigPauseButton;
     private Bitmap soundOffButton, soundOnButton;
     final private Paint red, text, white;
-
-    static private boolean showFPS = true; //render fps count
+    private boolean showFPS;
 
     //ANIMATION
     private int frameCount;
@@ -186,8 +185,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         mp = MediaPlayer.create(context,R.raw.track1);
 
         rand = new Random();
-
-
+        showFPS = false;
     }
 
     @Override
@@ -239,16 +237,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         }
         map.loadMap(data);
 
-
         map.initBitmaps(asteroid, shield, star);
         background = getResizedBitmap(background, getWidth(), getHeight());
 
-
-
-        //updateRocketBitmap();
-
-
-
+        showFPS = SettingsActivity.getShowFPS();
 
     }
 
@@ -584,6 +576,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     public int getPlayerY() {
         return (int) playerY;
+    }
+
+    public void toggleShowFPS() {
+        if (showFPS) showFPS = false;
+        if (!showFPS) showFPS = true;
     }
 
     /**

@@ -12,8 +12,11 @@
     <string name="returnB">zurück</string>
     <string name="play">spielen</string>
     <string name="language">sprache</string>
+    <string name="showfps">FPS anzeigen\:</string>
     <string name="settings">einstellungen</string>
     <string name="newhighscore" translatable="false">neuer \n highscore!</string>
     <string name="lives">LEBEN</string>
     <string name="points">PUNKTE</string>
+    <string name="on">ein</string>
+    <string name="off">aus</string>
 </resources>

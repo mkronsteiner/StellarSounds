@@ -28,6 +28,8 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "LanguageFile";
     public static final int PREFS_MODE = Context.MODE_PRIVATE;
 
+    static private boolean showFPS = false; //render fps count
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,21 @@ public class SettingsActivity extends AppCompatActivity {
             }
 
         });
+
+        //If FPS button is clicked change showFPS and update text
+        final TextView fpsSwitch = findViewById(R.id.fpsSwitchText);
+        if (showFPS) fpsSwitch.setText(res.getString(R.string.on));
+        else fpsSwitch.setText(res.getString(R.string.off));
+        fpsSwitch.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(v.getId()==R.id.fpsSwitchText){
+                    showFPS = !showFPS;
+                    if (showFPS) fpsSwitch.setText(res.getString(R.string.on));
+                    else fpsSwitch.setText(res.getString(R.string.off));
+                }
+            }
+
+        });
     }
 
     /**
@@ -97,4 +114,10 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putString(PREFS_NAME, language);
         editor.apply();
     }
+
+    static public boolean getShowFPS() {
+        return showFPS;
+    }
+
+
 }

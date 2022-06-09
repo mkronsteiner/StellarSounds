@@ -14,8 +14,11 @@
     <string name="returnB">return</string>
     <string name="play">play</string>
     <string name="language">language</string>
+    <string name="showfps">display FPS\:</string>
     <string name="settings">settings</string>
     <string name="newhighscore">new \n highscore!</string>
     <string name="lives">LIVES</string>
     <string name="points">POINTS</string>
+    <string name="on">on</string>
+    <string name="off">off</string>
 </resources>

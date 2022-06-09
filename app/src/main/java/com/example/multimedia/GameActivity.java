@@ -10,7 +10,10 @@ import android.view.Surface;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
 
 /**
 GameActivity holds the GameSurfaceView and Gameloop
@@ -42,4 +45,15 @@ public class GameActivity extends AppCompatActivity {
         setContentView(gameView);
 
     }
+
+    /**
+     * If back button pressed return to main menu
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(GameActivity.this, MainActivity.class);
+        startActivity(i);
+    }
+
 }

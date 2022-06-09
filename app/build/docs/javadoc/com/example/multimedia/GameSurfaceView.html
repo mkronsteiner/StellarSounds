@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -459,7 +459,7 @@ implements android.view.SurfaceHolder.Callback</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>private static boolean</code></td>
+<td class="colFirst"><code>private boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showFPS">showFPS</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -661,18 +661,23 @@ implements android.view.SurfaceHolder.Callback</pre>
 </tr>
 <tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toggleShowFPS()">toggleShowFPS</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i21" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update()">update</a></span>()</code></th>
 <td class="colLast">
 <div class="block">updates the values per frame (item times, points earned) and calls update() in LevelMap
  checks if lives == 0</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>private void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updatePoints()">updatePoints</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>private void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updateRocketBitmap()">updateRocketBitmap</a></span>()</code></th>
 <td class="colLast">
@@ -1137,7 +1142,7 @@ implements android.view.SurfaceHolder.Callback</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>showFPS</h4>
-<pre>private static&nbsp;boolean showFPS</pre>
+<pre>private&nbsp;boolean showFPS</pre>
 </li>
 </ul>
 <a id="frameCount">
@@ -1534,6 +1539,15 @@ implements android.view.SurfaceHolder.Callback</pre>
 <li class="blockList">
 <h4>getPlayerY</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getPlayerY()</pre>
+</li>
+</ul>
+<a id="toggleShowFPS()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toggleShowFPS</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;toggleShowFPS()</pre>
 </li>
 </ul>
 <a id="initMapData()">
