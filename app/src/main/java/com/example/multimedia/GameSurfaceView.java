@@ -194,7 +194,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         //stop all other music playing
         if (MusicPlayer.isPlaying) MusicPlayer.stopAudio();
 
-        gameLoop.startLoop();
         paused = false;
 
         mp.start();
@@ -241,6 +240,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         background = getResizedBitmap(background, getWidth(), getHeight());
 
         showFPS = SettingsActivity.getShowFPS();
+
+        gameLoop.startLoop();
 
     }
 
