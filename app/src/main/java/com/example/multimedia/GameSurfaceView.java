@@ -46,7 +46,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     //LEVEL SELECT
     private int levelSelect;
     private double[] data1, data2, data3;
-    private LevelMap map, map1, map2, map3;
+    private LevelMap map;
 
     //POSITIONS & MOVEMENT
     private double playerPos; //absolute position on screen
@@ -550,14 +550,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         int height = bm.getHeight();
         float scaleWidth = ((float) newWidth) / width;
         float scaleHeight = ((float) newHeight) / height;
-        // CREATE A MATRIX FOR THE MANIPULATION
         Matrix matrix = new Matrix();
-        // RESIZE THE BIT MAP
         matrix.postScale(scaleWidth, scaleHeight);
-
-        // "RECREATE" THE NEW BITMAP
-        Bitmap resizedBitmap = Bitmap.createBitmap(
-                bm, 0, 0, width, height, matrix, false);
+        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
         bm.recycle();
         return resizedBitmap;
     }
@@ -576,11 +571,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     public int getPlayerY() {
         return (int) playerY;
-    }
-
-    public void toggleShowFPS() {
-        if (showFPS) showFPS = false;
-        if (!showFPS) showFPS = true;
     }
 
     /**

@@ -6,6 +6,7 @@ import android.view.SurfaceHolder;
 
 /**
  GameLoop implements Thread methods, calls update and render methods in GameSurfaceView and calculates average FPS/UPS
+ source: https://github.com/bukkalexander/AndroidStudio2DGameDevelopment
  @author Mirjam Kronsteiner
  */
 
