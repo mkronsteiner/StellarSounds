@@ -1,1 +1,3 @@
-Stellar Sounds - a space exploration and rhythm game for Android
+Stellar Sounds - a space exploration rhythm game for Android
+
+[APK](app/build/outputs/apk/debug)
