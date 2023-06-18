@@ -1,1 +1,1 @@
-# MMUE22_SB7_StellarSounds
+Stellar Sounds - a space exploration and rhythm game for Android
